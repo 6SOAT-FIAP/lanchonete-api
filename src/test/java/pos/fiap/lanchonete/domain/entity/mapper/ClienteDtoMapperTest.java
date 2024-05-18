@@ -12,7 +12,7 @@ import static org.junit.jupiter.api.Assertions.assertNull;
 import static pos.fiap.lanchonete.domain.objectmother.DadosClienteObjectMother.getDadosClienteMock;
 
 @ExtendWith(MockitoExtension.class)
-class ClienteMapperTest {
+class ClienteDtoMapperTest {
 
     @Spy
     private ClienteMapper clienteMapper = Mappers.getMapper(ClienteMapper.class);

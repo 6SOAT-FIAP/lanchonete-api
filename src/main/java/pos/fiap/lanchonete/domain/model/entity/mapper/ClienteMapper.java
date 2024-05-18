@@ -8,4 +8,6 @@ import pos.fiap.lanchonete.domain.model.entity.Cliente;
 public interface ClienteMapper {
 
     Cliente fromDadosCliente(DadosCliente dadosCliente);
+
+    DadosCliente toDadosCliente(Cliente cliente);
 }
