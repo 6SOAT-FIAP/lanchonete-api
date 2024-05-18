@@ -1,4 +1,4 @@
-package pos.fiap.lanchonete.domain.objectmother;
+package pos.fiap.lanchonete.objectmother;
 
 import pos.fiap.lanchonete.domain.model.DadosCliente;
 
