@@ -1,18 +1,19 @@
-package pos.fiap.lanchonete.domain.model.entity;
+package pos.fiap.lanchonete.adapter.out.mongo.entities;
 
 import lombok.Builder;
 import lombok.Data;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 import pos.fiap.lanchonete.adapter.in.api.enums.CategoriaEnum;
 
-import java.io.Serial;
-import java.io.Serializable;
 import java.net.URL;
 
 @Data
 @Builder
-public class Produto implements Serializable {
-    @Serial
-    private static final long serialVersionUID = 2257875953001651461L;
+@Document("produto")
+public class ProdutoEntity {
+
+    @Id
     private String id;
     private String nome;
     private CategoriaEnum categoria;

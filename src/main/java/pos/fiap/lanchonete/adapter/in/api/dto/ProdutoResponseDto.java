@@ -1,18 +1,22 @@
-package pos.fiap.lanchonete.domain.model.entity;
+package pos.fiap.lanchonete.adapter.in.api.dto;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Builder;
-import lombok.Data;
+import lombok.Getter;
+import lombok.ToString;
 import pos.fiap.lanchonete.adapter.in.api.enums.CategoriaEnum;
 
 import java.io.Serial;
 import java.io.Serializable;
 import java.net.URL;
 
-@Data
+@Getter
 @Builder
-public class Produto implements Serializable {
+@ToString
+@JsonIgnoreProperties(ignoreUnknown = true)
+public class ProdutoResponseDto implements Serializable {
     @Serial
-    private static final long serialVersionUID = 2257875953001651461L;
+    private static final long serialVersionUID = -4825697705033933620L;
     private String id;
     private String nome;
     private CategoriaEnum categoria;

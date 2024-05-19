@@ -1,4 +1,4 @@
-package pos.fiap.lanchonete.domain.model.entity;
+package pos.fiap.lanchonete.domain.model;
 
 import lombok.Builder;
 import lombok.Data;
@@ -10,9 +10,11 @@ import java.net.URL;
 
 @Data
 @Builder
-public class Produto implements Serializable {
+public class DadosProduto implements Serializable {
+
     @Serial
-    private static final long serialVersionUID = 2257875953001651461L;
+    private static final long serialVersionUID = -3716558214287447199L;
+
     private String id;
     private String nome;
     private CategoriaEnum categoria;
