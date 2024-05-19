@@ -1,8 +1,16 @@
 package pos.fiap.lanchonete.adapter.in.api;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import pos.fiap.lanchonete.adapter.in.api.dto.ClienteRequestDto;
@@ -10,6 +18,9 @@ import pos.fiap.lanchonete.adapter.in.api.dto.ClienteResponseDto;
 import pos.fiap.lanchonete.adapter.in.api.dto.mapper.ClienteDtoMapper;
 import pos.fiap.lanchonete.port.ClienteUseCasePort;
 
+import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
+
+@Tag(name = "Cliente", description = "APIs referente ao cliente")
 @Slf4j
 @RestController
 @RequiredArgsConstructor
@@ -19,8 +30,16 @@ public class ClienteController {
     private final ClienteDtoMapper clienteDtoMapper;
     private final ClienteUseCasePort clienteUseCasePort;
 
+    @Operation(
+            summary = "Cadastrar um cliente",
+            description = "Cadastra um cliente informando o nome, cpf e email.",
+            tags = {"cliente", "post"})
+    @ApiResponses({
+            @ApiResponse(responseCode = "200", content = {@Content(schema = @Schema(implementation = ClienteResponseDto.class), mediaType = APPLICATION_JSON_VALUE)}),
+            @ApiResponse(responseCode = "404", content = {@Content(schema = @Schema())}),
+            @ApiResponse(responseCode = "500", content = {@Content(schema = @Schema())})})
     @PostMapping
-    public ResponseEntity<ClienteResponseDto> cadastrar(@RequestBody ClienteRequestDto clienteRequestDto) {
+    public ResponseEntity<ClienteResponseDto> cadastrar(@RequestBody @Valid ClienteRequestDto clienteRequestDto) {
         log.info("Cliente request: {}", clienteRequestDto);
         var dadosCliente = clienteDtoMapper.toDadosClientefromRequestDto(clienteRequestDto);
 
@@ -31,6 +50,14 @@ public class ClienteController {
         return ResponseEntity.status(HttpStatus.CREATED).body(clienteResponse);
     }
 
+    @Operation(
+            summary = "Consultar um cliente pelo CPF",
+            description = "Consulta um cliente pelo CPF. Caso exista o cliente, o response contém o nome, cpf e email do cliente.",
+            tags = {"cliente", "get"})
+    @ApiResponses({
+            @ApiResponse(responseCode = "200", content = {@Content(schema = @Schema(implementation = ClienteResponseDto.class), mediaType = APPLICATION_JSON_VALUE)}),
+            @ApiResponse(responseCode = "404", content = {@Content(schema = @Schema())}),
+            @ApiResponse(responseCode = "500", content = {@Content(schema = @Schema())})})
     @GetMapping(value = "/{cpf}")
     public ResponseEntity<ClienteResponseDto> procurarPorCpf(@PathVariable String cpf) {
         log.info("CPF request: {}", cpf);
