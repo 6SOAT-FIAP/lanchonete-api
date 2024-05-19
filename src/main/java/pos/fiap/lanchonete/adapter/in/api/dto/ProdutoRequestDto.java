@@ -1,6 +1,8 @@
 package pos.fiap.lanchonete.adapter.in.api.dto;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.ToString;
@@ -14,9 +16,11 @@ import java.net.URL;
 @Builder
 @ToString
 @JsonIgnoreProperties(ignoreUnknown = true)
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class ProdutoRequestDto implements Serializable {
     @Serial
     private static final long serialVersionUID = -7187216715845710615L;
+    private String id;
     private String nome;
     private CategoriaEnum categoria;
     private Double preco;
