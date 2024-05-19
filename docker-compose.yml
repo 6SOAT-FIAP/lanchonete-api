@@ -1,0 +1,34 @@
+version: '3.9'
+networks:
+  lanchonete-network:
+    driver: bridge
+
+services:
+  mongodb:
+    image: mongo
+    container_name: mongodb
+    logging:
+      options:
+        max-size: 1g
+    ports:
+      - '27017:27017'
+    networks:
+      - lanchonete-network
+    restart: on-failure
+  lanchonete-api:
+    links:
+      - mongodb
+    depends_on:
+      - mongodb
+    build: .
+    image: lanchonete-api:latest
+    container_name: lanchonete-api
+    environment:
+      - SPRING.DATA.MONGODB.HOST=mongodb
+      - SPRING.DATA.MONGODB.port=27017
+      - SPRING.DATA.MONGODB.DATABASE=lanchonete_db
+    ports:
+      - "8080:8080"
+    networks:
+      - lanchonete-network
+    restart: on-failure
