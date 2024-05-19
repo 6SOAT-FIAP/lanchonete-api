@@ -22,4 +22,6 @@ public interface MongoAdapterPort {
     List<Produto> buscarProdutoPorCategoria(String categoria);
 
     Pedido cadastrarPedido(Pedido pedido);
+
+    List<Pedido> buscarPedidos();
 }

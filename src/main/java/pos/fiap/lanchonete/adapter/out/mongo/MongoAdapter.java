@@ -122,4 +122,16 @@ public class MongoAdapter implements MongoAdapterPort {
         log.info(String.format(STRING_LOG_FORMAT, SERVICE_NAME, methodName, FIM), pedido);
         return pedidoResponse;
     }
+
+    @Override
+    public List<Pedido> buscarPedidos() {
+        var methodName = "buscarPedidos";
+        log.info(String.format(STRING_LOG_FORMAT, SERVICE_NAME, methodName, INICIO), "pedidos");
+
+        var entity = pedidoRepository.findAll();
+        var pedidoList = pedidoEntityMapper.toListPedido(entity);
+
+        log.info(String.format(STRING_LOG_FORMAT, SERVICE_NAME, methodName, FIM), "pedidos");
+        return pedidoList;
+    }
 }

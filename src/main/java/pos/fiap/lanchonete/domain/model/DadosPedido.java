@@ -17,5 +17,6 @@ public class DadosPedido implements Serializable {
     private String cpfCliente;
     private String numeroPedido;
     private List<DadosProduto> itens;
+    private Double valorTotal;
     private String mensagemPedido;
 }

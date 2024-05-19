@@ -30,6 +30,12 @@ public class PedidoUseCase implements PedidoUseCasePort {
         return pedidoMapper.toDadosPedido(pedidoResponse);
     }
 
+    @Override
+    public List<DadosPedido> listar() {
+        var pedidos = mongoAdapterPort.buscarPedidos();
+        return pedidoMapper.toListDadosPedido(pedidos);
+    }
+
     private Double calculaValorPedido(List<DadosProduto> itens) {
         return itens.stream().map(DadosProduto::getPreco).reduce(0.0, Double::sum);
     }
