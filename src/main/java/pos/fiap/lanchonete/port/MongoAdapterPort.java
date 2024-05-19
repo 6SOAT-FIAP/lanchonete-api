@@ -1,6 +1,7 @@
 package pos.fiap.lanchonete.port;
 
 import pos.fiap.lanchonete.domain.model.entity.Cliente;
+import pos.fiap.lanchonete.domain.model.entity.Pedido;
 import pos.fiap.lanchonete.domain.model.entity.Produto;
 
 import java.util.List;
@@ -19,4 +20,8 @@ public interface MongoAdapterPort {
     void removerProduto(String id);
 
     List<Produto> buscarProdutoPorCategoria(String categoria);
+
+    Pedido cadastrarPedido(Pedido pedido);
+
+    List<Pedido> buscarPedidos();
 }

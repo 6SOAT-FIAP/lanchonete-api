@@ -4,10 +4,13 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 import pos.fiap.lanchonete.adapter.out.mongo.entities.mapper.ClienteEntityMapper;
+import pos.fiap.lanchonete.adapter.out.mongo.entities.mapper.PedidoEntityMapper;
 import pos.fiap.lanchonete.adapter.out.mongo.entities.mapper.ProdutoEntityMapper;
 import pos.fiap.lanchonete.adapter.out.mongo.repository.ClienteRepository;
+import pos.fiap.lanchonete.adapter.out.mongo.repository.PedidoRepository;
 import pos.fiap.lanchonete.adapter.out.mongo.repository.ProdutoRepository;
 import pos.fiap.lanchonete.domain.model.entity.Cliente;
+import pos.fiap.lanchonete.domain.model.entity.Pedido;
 import pos.fiap.lanchonete.domain.model.entity.Produto;
 import pos.fiap.lanchonete.port.MongoAdapterPort;
 
@@ -25,8 +28,10 @@ public class MongoAdapter implements MongoAdapterPort {
     private static final String STRING_LOG_FORMAT = "%s_%s_%s {}";
     private final ClienteRepository clienteRepository;
     private final ProdutoRepository produtoRepository;
+    private final PedidoRepository pedidoRepository;
     private final ClienteEntityMapper clienteEntityMapper;
     private final ProdutoEntityMapper produtoEntityMapper;
+    private final PedidoEntityMapper pedidoEntityMapper;
 
     @Override
     public Cliente cadastrarCliente(Cliente cliente) {
@@ -101,5 +106,32 @@ public class MongoAdapter implements MongoAdapterPort {
         log.info(String.format(STRING_LOG_FORMAT, SERVICE_NAME, methodName, FIM), categoria);
 
         return produtoList;
+    }
+
+    @Override
+    public Pedido cadastrarPedido(Pedido pedido) {
+        var methodName = "cadastrarPedido";
+        log.info(String.format(STRING_LOG_FORMAT, SERVICE_NAME, methodName, INICIO), pedido);
+
+        var pedidoEntity = pedidoEntityMapper.toEntity(pedido);
+
+        var entity = pedidoRepository.save(pedidoEntity);
+
+        var pedidoResponse = pedidoEntityMapper.toPedido(entity);
+
+        log.info(String.format(STRING_LOG_FORMAT, SERVICE_NAME, methodName, FIM), pedido);
+        return pedidoResponse;
+    }
+
+    @Override
+    public List<Pedido> buscarPedidos() {
+        var methodName = "buscarPedidos";
+        log.info(String.format(STRING_LOG_FORMAT, SERVICE_NAME, methodName, INICIO), "pedidos");
+
+        var entity = pedidoRepository.findAll();
+        var pedidoList = pedidoEntityMapper.toListPedido(entity);
+
+        log.info(String.format(STRING_LOG_FORMAT, SERVICE_NAME, methodName, FIM), "pedidos");
+        return pedidoList;
     }
 }
