@@ -1,7 +1,4 @@
-# Tech Challenge 
-Pós Tech Software Architecture - 6SOAT
-
----
+# Tech Challenge - Pós Tech Software Architecture
 
 #### Grupo 34
 
@@ -49,12 +46,20 @@ Ilustrou-se o processo do negócio através da tempestade de eventos.
 
 O primeiro passo foi o brainstorm, onde foram levantados os eventos do domínio abordado.
 
-![Brainstorming](assets/event-storming/Brainstorming.svg)
+<p align = "center">
+  <img src = assets/event-storming/Brainstorming.svg>
+</p>
 
-Em seguida, organizou-se os eventos na linha do tempo para os fluxos:
+Em seguida, organizou-se os eventos na linha do tempo para os seguintes fluxos:
 
-Realização do pedido e pagamento:
-![Pedido-pagamento](assets/event-storming/Pedido-pagamento.svg)
+- Realização do pedido e pagamento:
 
-Preparação e entrega do pedido:
-![Preparacao-entrega](assets/event-storming/Preparacao-entrega.svg)
+<p align = "center">
+  <img src = assets/event-storming/Pedido-pagamento.svg>
+</p>
+
+- Preparação e entrega do pedido:
+
+<p align = "center">
+  <img src = assets/event-storming/Preparacao-entrega.svg>
+</p>
