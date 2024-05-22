@@ -42,7 +42,7 @@ http://localhost:8080/swagger-ui/index.html
 
 ## Event Storming
 
-Ilustrou-se o processo do negócio através da tempestade de eventos.
+Ilustrou-se o processo do negócio através do [**Event Storming**](assets/event-storming/Event-Storming.drawio).
 
 O primeiro passo foi o brainstorm, onde foram levantados os eventos do domínio abordado.
 
