@@ -1,8 +1,11 @@
 package pos.fiap.lanchonete.port;
 
+import pos.fiap.lanchonete.adapter.in.api.enums.CategoriaEnum;
 import pos.fiap.lanchonete.domain.model.DadosProduto;
+import pos.fiap.lanchonete.domain.model.entity.Produto;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface ProdutoUseCasePort {
 
@@ -10,7 +13,7 @@ public interface ProdutoUseCasePort {
 
     DadosProduto alterar(String id, DadosProduto dadosProduto);
 
-    void remover(String id);
+    Optional<Produto> remover(String id);
 
-    List<DadosProduto> buscarPorCategoria(String categoria);
+    List<DadosProduto> buscarPorCategoria(CategoriaEnum categoria);
 }

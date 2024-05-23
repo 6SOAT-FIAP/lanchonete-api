@@ -1,6 +1,5 @@
 package pos.fiap.lanchonete.adapter.in;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.SneakyThrows;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +25,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static pos.fiap.lanchonete.objectmother.ClienteRequestDtoObjectMother.getClienteRequestDtoMock;
 import static pos.fiap.lanchonete.objectmother.ClienteResponseDtoObjectMother.getClienteResponseDtoMock;
 import static pos.fiap.lanchonete.objectmother.DadosClienteObjectMother.getDadosClienteMock;
+import static pos.fiap.lanchonete.utils.JsonStringUtils.asJsonString;
 
 @WebMvcTest(ClienteController.class)
 class ClienteControllerTest {
@@ -96,11 +96,4 @@ class ClienteControllerTest {
         assertEquals(HttpStatus.NOT_FOUND.value(), responseMvc.getStatus());
     }
 
-    private String asJsonString(final Object obj) {
-        try {
-            return new ObjectMapper().writeValueAsString(obj);
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
-    }
 }

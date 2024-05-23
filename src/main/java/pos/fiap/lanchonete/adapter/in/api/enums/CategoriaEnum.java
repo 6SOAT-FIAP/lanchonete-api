@@ -1,9 +1,24 @@
 package pos.fiap.lanchonete.adapter.in.api.enums;
 
+import lombok.RequiredArgsConstructor;
+
+import java.util.Optional;
+
+@RequiredArgsConstructor
 public enum CategoriaEnum {
 
-    Lanche,
-    Acompanhamento,
-    Bebida,
-    Sobremesa;
+    LANCHE("lanche"),
+    ACOMPANHAMENTO("acompanhamento"),
+    BEBIDA("bebida"),
+    SOBREMESA("sobremesa");
+
+    private final String label;
+
+    public static Optional<CategoriaEnum> getCategoriaByLabel(String label) {
+        try {
+            return Optional.of(CategoriaEnum.valueOf(label.toUpperCase()));
+        } catch (IllegalArgumentException e) {
+            return Optional.empty();
+        }
+    }
 }
