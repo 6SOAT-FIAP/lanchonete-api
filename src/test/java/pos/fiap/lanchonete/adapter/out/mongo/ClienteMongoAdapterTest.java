@@ -22,19 +22,20 @@ import static pos.fiap.lanchonete.objectmother.ClienteEntityObjectMother.getClie
 import static pos.fiap.lanchonete.objectmother.ClienteObjectMother.getClienteMock;
 
 @ExtendWith(MockitoExtension.class)
-class MongoAdapterTest {
+class ClienteMongoAdapterTest {
+
     @Mock
     private ClienteRepository clienteRepository;
     @Spy
     private ClienteEntityMapper clienteEntityMapper = Mappers.getMapper(ClienteEntityMapper.class);
     @InjectMocks
-    private MongoAdapter mongoAdapter;
+    private ClienteMongoAdapter clienteMongoAdapter;
 
     @Test
     void testCadastrarCliente_Success() {
         when(clienteRepository.save(any(ClienteEntity.class))).thenReturn(getClienteEntityMock());
 
-        var cliente = mongoAdapter.cadastrarCliente(getClienteMock());
+        var cliente = clienteMongoAdapter.cadastrarCliente(getClienteMock());
 
         verify(clienteRepository, times(1)).save(any(ClienteEntity.class));
         verify(clienteEntityMapper, times(1)).toEntity(any(Cliente.class));
@@ -46,7 +47,7 @@ class MongoAdapterTest {
     void testProcurarClientePorCpf_Success() {
         when(clienteRepository.findById(anyString())).thenReturn(Optional.of(getClienteEntityMock()));
 
-        var cliente = mongoAdapter.procurarClientePorCpf(getClienteMock().getCpf());
+        var cliente = clienteMongoAdapter.procurarClientePorCpf(getClienteMock().getCpf());
 
         verify(clienteRepository, times(1)).findById(anyString());
         verify(clienteEntityMapper, times(1)).toCliente(any(ClienteEntity.class));
@@ -59,7 +60,7 @@ class MongoAdapterTest {
     void testProcurarClientePorCpf_NotPresent() {
         when(clienteRepository.findById(anyString())).thenReturn(Optional.empty());
 
-        var cliente = mongoAdapter.procurarClientePorCpf(getClienteMock().getCpf());
+        var cliente = clienteMongoAdapter.procurarClientePorCpf(getClienteMock().getCpf());
 
         verify(clienteRepository, times(1)).findById(anyString());
         verify(clienteEntityMapper, times(0)).toCliente(any(ClienteEntity.class));

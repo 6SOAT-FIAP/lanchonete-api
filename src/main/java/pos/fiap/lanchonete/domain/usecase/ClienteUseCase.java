@@ -5,8 +5,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import pos.fiap.lanchonete.domain.model.DadosCliente;
 import pos.fiap.lanchonete.domain.model.entity.mapper.ClienteMapper;
+import pos.fiap.lanchonete.port.ClienteMongoAdapterPort;
 import pos.fiap.lanchonete.port.ClienteUseCasePort;
-import pos.fiap.lanchonete.port.MongoAdapterPort;
 
 import java.util.Optional;
 
@@ -15,18 +15,18 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class ClienteUseCase implements ClienteUseCasePort {
     private final ClienteMapper clienteMapper;
-    private final MongoAdapterPort mongoAdapterPort;
+    private final ClienteMongoAdapterPort clienteMongoAdapterPort;
 
     @Override
     public DadosCliente cadastrar(DadosCliente dadosCliente) {
         var cliente = clienteMapper.fromDadosCliente(dadosCliente);
-        cliente = mongoAdapterPort.cadastrarCliente(cliente);
+        cliente = clienteMongoAdapterPort.cadastrarCliente(cliente);
         return clienteMapper.toDadosCliente(cliente);
     }
 
     @Override
     public Optional<DadosCliente> procurarPorCpf(String cpf) {
-        var cliente = mongoAdapterPort.procurarClientePorCpf(cpf);
+        var cliente = clienteMongoAdapterPort.procurarClientePorCpf(cpf);
         return cliente.map(clienteMapper::toDadosCliente);
     }
 }

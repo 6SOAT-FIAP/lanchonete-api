@@ -10,7 +10,6 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import pos.fiap.lanchonete.adapter.in.api.dto.ClienteRequestDto;
@@ -18,6 +17,8 @@ import pos.fiap.lanchonete.adapter.in.api.dto.ClienteResponseDto;
 import pos.fiap.lanchonete.adapter.in.api.dto.mapper.ClienteDtoMapper;
 import pos.fiap.lanchonete.port.ClienteUseCasePort;
 
+import static org.springframework.http.HttpStatus.CREATED;
+import static org.springframework.http.HttpStatus.OK;
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
 @Tag(name = "Cliente", description = "APIs referente ao cliente")
@@ -30,14 +31,13 @@ public class ClienteController {
     private final ClienteDtoMapper clienteDtoMapper;
     private final ClienteUseCasePort clienteUseCasePort;
 
-    @Operation(
-            summary = "Cadastrar um cliente",
-            description = "Cadastra um cliente informando o nome, cpf e email.",
-            tags = {"cliente", "post"})
+    @Operation(summary = "Cadastrar um cliente",
+            description = "Cadastra um cliente informando o nome, cpf e email.")
     @ApiResponses({
-            @ApiResponse(responseCode = "200", content = {@Content(schema = @Schema(implementation = ClienteResponseDto.class), mediaType = APPLICATION_JSON_VALUE)}),
+            @ApiResponse(responseCode = "201", content = {@Content(schema = @Schema(implementation = ClienteResponseDto.class), mediaType = APPLICATION_JSON_VALUE)}),
             @ApiResponse(responseCode = "404", content = {@Content(schema = @Schema())}),
             @ApiResponse(responseCode = "500", content = {@Content(schema = @Schema())})})
+    @ResponseStatus(CREATED)
     @PostMapping
     public ResponseEntity<ClienteResponseDto> cadastrar(@RequestBody @Valid ClienteRequestDto clienteRequestDto) {
         log.info("Cliente request: {}", clienteRequestDto);
@@ -50,14 +50,17 @@ public class ClienteController {
         return ResponseEntity.status(HttpStatus.CREATED).body(clienteResponse);
     }
 
-    @Operation(
-            summary = "Consultar um cliente pelo CPF",
-            description = "Consulta um cliente pelo CPF. Caso exista o cliente, o response contém o nome, cpf e email do cliente.",
-            tags = {"cliente", "get"})
+    @Operation(summary = "Consultar um cliente pelo CPF",
+            description = "Consulta um cliente pelo CPF. Caso exista o cliente, o response contém o nome, cpf" +
+                    " e email do cliente.")
     @ApiResponses({
-            @ApiResponse(responseCode = "200", content = {@Content(schema = @Schema(implementation = ClienteResponseDto.class), mediaType = APPLICATION_JSON_VALUE)}),
+            @ApiResponse(responseCode = "200", content = {
+                    @Content(schema = @Schema(implementation = ClienteResponseDto.class),
+                            mediaType = APPLICATION_JSON_VALUE)
+            }),
             @ApiResponse(responseCode = "404", content = {@Content(schema = @Schema())}),
             @ApiResponse(responseCode = "500", content = {@Content(schema = @Schema())})})
+    @ResponseStatus(OK)
     @GetMapping(value = "/{cpf}")
     public ResponseEntity<ClienteResponseDto> procurarPorCpf(@PathVariable String cpf) {
         log.info("CPF request: {}", cpf);
