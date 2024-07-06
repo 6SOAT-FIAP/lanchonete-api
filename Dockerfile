@@ -23,4 +23,4 @@ COPY --from=builder /app/target/lanchonete-0.0.1-SNAPSHOT.jar .
 EXPOSE 8080
 
 # Comando para iniciar o aplicativo
-CMD ["java", "-jar", "-Dspring.data.mongodb.uri=mongodb://mongodb/lanchonetedb", "lanchonete-0.0.1-SNAPSHOT.jar"]
+CMD ["java", "-jar", "-Dspring.data.mongodb.uri=mongodb://mongodb:27017/lanchonetedb", "lanchonete-0.0.1-SNAPSHOT.jar"]
