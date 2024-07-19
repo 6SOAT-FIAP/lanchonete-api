@@ -71,7 +71,7 @@ Para rodar no **Kubernetes** siga as seguintes etapas:
 
 1º Aplique as configurações da aplicação no K8S estando na pasta do projeto
 ```bash
-kubectl -- apply -f ./infra/k8s
+kubectl apply -f ./infra/k8s
 ```
 A inicialização deve levar de 5 a 10 minutos
 

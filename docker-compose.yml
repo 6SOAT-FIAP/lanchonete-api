@@ -15,18 +15,17 @@ services:
     networks:
       - lanchonete-network
     restart: on-failure
-  lanchonete-api:
-    links:
-      - mongodb
-    depends_on:
-      - mongodb
-    build: .
+
+  application:
+    build:
+      context: .
+      dockerfile: Dockerfile
     image: lanchonete-api:latest
     container_name: lanchonete-api
+    depends_on:
+      - mongodb
     environment:
-      - SPRING.DATA.MONGODB.HOST=mongodb
-      - SPRING.DATA.MONGODB.port=27017
-      - SPRING.DATA.MONGODB.DATABASE=lanchonete_db
+      - spring.profiles.active=dev
     ports:
       - "8080:8080"
     networks:
