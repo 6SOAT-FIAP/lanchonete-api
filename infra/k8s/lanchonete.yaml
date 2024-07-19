@@ -20,11 +20,11 @@ spec:
           ports:
             - containerPort: 8080
           env:
-            - name: SPRING_DATA_MONGODB_URI
+            - name: spring.profiles.active
               valueFrom:
                 configMapKeyRef:
                   name: dados
-                  key: SPRING_DATA_MONGODB_URI
+                  key: ENVIRONMENT
           livenessProbe:
             httpGet:
               path: /swagger-ui/
