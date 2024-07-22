@@ -5,6 +5,8 @@ import lombok.Data;
 
 import java.io.Serial;
 import java.io.Serializable;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Data
@@ -18,4 +20,6 @@ public class Pedido implements Serializable {
     private String cpfCliente;
     private Double valorTotal;
     private List<Produto> itens;
+    private LocalDateTime dataCriacao;
+    private LocalDateTime dataAtualizacao;
 }

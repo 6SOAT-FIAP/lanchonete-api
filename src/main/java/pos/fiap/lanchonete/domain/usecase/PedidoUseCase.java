@@ -1,6 +1,7 @@
 package pos.fiap.lanchonete.domain.usecase;
 
 import lombok.RequiredArgsConstructor;
+import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import pos.fiap.lanchonete.domain.model.DadosPedido;
@@ -10,8 +11,6 @@ import pos.fiap.lanchonete.port.PedidoMongoAdapterPort;
 import pos.fiap.lanchonete.port.PedidoUseCasePort;
 
 import java.util.List;
-
-import static pos.fiap.lanchonete.utils.Constantes.PEDIDO_COM_SUCESSO;
 
 @Slf4j
 @Service
@@ -26,7 +25,6 @@ public class PedidoUseCase implements PedidoUseCasePort {
         var valorTotal = calculaValorPedido(dadosPedido.getItens());
         var pedido = pedidoMapper.fromDadosPedido(valorTotal, dadosPedido);
         var pedidoResponse = pedidoMongoAdapterPort.cadastrarPedido(pedido);
-        pedidoResponse.setMensagemPedido(PEDIDO_COM_SUCESSO);
         return pedidoMapper.toDadosPedido(pedidoResponse);
     }
 
@@ -34,6 +32,13 @@ public class PedidoUseCase implements PedidoUseCasePort {
     public List<DadosPedido> listar() {
         var pedidos = pedidoMongoAdapterPort.buscarPedidos();
         return pedidoMapper.toListDadosPedido(pedidos);
+    }
+
+    @Override
+    @SneakyThrows
+    public DadosPedido obterPedidoPorId(String idPedido) {
+        var pedido = pedidoMongoAdapterPort.obterPedidoPorId(idPedido);
+        return pedidoMapper.toDadosPedido(pedido);
     }
 
     private Double calculaValorPedido(List<DadosProduto> itens) {

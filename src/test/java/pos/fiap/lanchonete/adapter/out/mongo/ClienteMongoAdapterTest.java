@@ -18,8 +18,8 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.*;
-import static pos.fiap.lanchonete.objectmother.ClienteEntityObjectMother.getClienteEntityMock;
-import static pos.fiap.lanchonete.objectmother.ClienteObjectMother.getClienteMock;
+import static pos.fiap.lanchonete.objectmother.entities.ClienteEntityObjectMother.getClienteEntityMock;
+import static pos.fiap.lanchonete.objectmother.model.ClienteObjectMother.getClienteMock;
 
 @ExtendWith(MockitoExtension.class)
 class ClienteMongoAdapterTest {

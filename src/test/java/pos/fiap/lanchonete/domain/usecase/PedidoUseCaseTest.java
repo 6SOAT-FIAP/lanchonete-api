@@ -19,8 +19,8 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
-import static pos.fiap.lanchonete.objectmother.DadosPedidoObjectMother.getDadosPedidoMock;
-import static pos.fiap.lanchonete.objectmother.PedidoObjectMother.getPedidoMock;
+import static pos.fiap.lanchonete.objectmother.model.DadosPedidoObjectMother.getDadosPedidoMock;
+import static pos.fiap.lanchonete.objectmother.model.PedidoObjectMother.getPedidoMock;
 
 @ExtendWith(MockitoExtension.class)
 class PedidoUseCaseTest {

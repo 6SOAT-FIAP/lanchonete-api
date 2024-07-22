@@ -21,8 +21,8 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 import static pos.fiap.lanchonete.adapter.in.api.enums.CategoriaEnum.ACOMPANHAMENTO;
-import static pos.fiap.lanchonete.objectmother.DadosProdutoObjectMother.getDadosProdutoMock;
-import static pos.fiap.lanchonete.objectmother.ProdutoObjectMother.getProdutoMock;
+import static pos.fiap.lanchonete.objectmother.model.DadosProdutoObjectMother.getDadosProdutoMock;
+import static pos.fiap.lanchonete.objectmother.model.ProdutoObjectMother.getProdutoMock;
 
 @ExtendWith(MockitoExtension.class)
 class ProdutoUseCaseTest {

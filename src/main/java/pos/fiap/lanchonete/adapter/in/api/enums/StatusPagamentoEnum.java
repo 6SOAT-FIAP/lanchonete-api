@@ -5,6 +5,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public enum StatusPagamentoEnum {
 
+    AGUARDANDO("aguardando"),
     APROVADO("aprovado"),
     RECUSADO("recusado");
 

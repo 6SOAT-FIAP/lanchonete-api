@@ -1,7 +1,9 @@
 package pos.fiap.lanchonete.port;
 
-import pos.fiap.lanchonete.domain.model.entity.Pagamento;
+import pos.fiap.lanchonete.domain.model.DadosPagamento;
 
 public interface PagamentoMongoAdapterPort {
-    Pagamento buscarStatusPagamento(String idPedido);
+    DadosPagamento obterDadosPagamento(String idPedido);
+
+    DadosPagamento salvarPagamento(DadosPagamento dadosPagamento);
 }

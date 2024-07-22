@@ -9,4 +9,6 @@ public interface PedidoUseCasePort {
     DadosPedido checkout(DadosPedido dadosPedido);
 
     List<DadosPedido> listar();
+
+    DadosPedido obterPedidoPorId(String idPedido);
 }

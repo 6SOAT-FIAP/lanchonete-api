@@ -5,6 +5,7 @@ import lombok.Data;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Data
@@ -17,4 +18,6 @@ public class PedidoEntity {
     private String cpfCliente;
     private Double valorTotal;
     private List<ProdutoEntity> itens;
+    private LocalDateTime dataCriacao;
+    private LocalDateTime dataAtualizacao;
 }

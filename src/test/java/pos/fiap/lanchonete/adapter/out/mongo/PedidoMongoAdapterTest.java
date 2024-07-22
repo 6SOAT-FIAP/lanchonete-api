@@ -7,19 +7,20 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Spy;
 import org.mockito.junit.jupiter.MockitoExtension;
+import pos.fiap.lanchonete.adapter.out.exception.PedidoNotFoundException;
 import pos.fiap.lanchonete.adapter.out.mongo.entities.PedidoEntity;
 import pos.fiap.lanchonete.adapter.out.mongo.entities.mapper.PedidoEntityMapper;
 import pos.fiap.lanchonete.adapter.out.mongo.repository.PedidoRepository;
 import pos.fiap.lanchonete.domain.model.entity.Pedido;
 
 import java.util.List;
+import java.util.Optional;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
-import static pos.fiap.lanchonete.objectmother.PedidoEntityObjectMother.getPedidoEntityMock;
-import static pos.fiap.lanchonete.objectmother.PedidoObjectMother.getPedidoMock;
+import static pos.fiap.lanchonete.objectmother.entities.PedidoEntityObjectMother.getPedidoEntityMock;
+import static pos.fiap.lanchonete.objectmother.model.PedidoObjectMother.getPedidoMock;
 
 @ExtendWith(MockitoExtension.class)
 class PedidoMongoAdapterTest {
@@ -53,5 +54,25 @@ class PedidoMongoAdapterTest {
         verify(pedidoEntityMapper, times(1)).toListPedido(anyList());
         assertNotNull(pedido);
         assertFalse(pedido.isEmpty());
+    }
+
+    @Test
+    void testObterPedidoPorId_Success() {
+        when(pedidoRepository.findById(anyString())).thenReturn(Optional.ofNullable(getPedidoEntityMock()));
+
+        var pedido = pedidoMongoAdapter.obterPedidoPorId("123");
+
+        verify(pedidoRepository, times(1)).findById(anyString());
+        verify(pedidoEntityMapper, times(1)).toPedido(any(PedidoEntity.class));
+        assertNotNull(pedido);
+    }
+
+    @Test
+    void testObterPedidoPorId_PedidoNotFoundException() {
+        when(pedidoRepository.findById(anyString())).thenReturn(Optional.empty());
+
+        assertThrows(PedidoNotFoundException.class, () -> {
+            pedidoMongoAdapter.obterPedidoPorId("123");
+        });
     }
 }
