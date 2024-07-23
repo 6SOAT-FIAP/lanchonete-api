@@ -5,6 +5,7 @@ import lombok.Data;
 
 import java.io.Serial;
 import java.io.Serializable;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Data
@@ -19,4 +20,11 @@ public class DadosPedido implements Serializable {
     private List<DadosProduto> itens;
     private Double valorTotal;
     private String mensagemPedido;
+    private String qrCode;
+    private LocalDateTime dataCriacao;
+    private LocalDateTime dataAtualizacao;
+
+    public void atualizarData() {
+        this.dataAtualizacao = LocalDateTime.now();
+    }
 }

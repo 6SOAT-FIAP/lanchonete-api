@@ -9,7 +9,7 @@ import pos.fiap.lanchonete.domain.model.entity.mapper.ClienteMapper;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
-import static pos.fiap.lanchonete.objectmother.DadosClienteObjectMother.getDadosClienteMock;
+import static pos.fiap.lanchonete.objectmother.model.DadosClienteObjectMother.getDadosClienteMock;
 
 @ExtendWith(MockitoExtension.class)
 class ClienteDtoMapperTest {

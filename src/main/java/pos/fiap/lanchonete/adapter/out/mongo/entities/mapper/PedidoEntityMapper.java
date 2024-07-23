@@ -12,9 +12,9 @@ import java.util.UUID;
 public interface PedidoEntityMapper {
 
     @Mapping(target = "numeroPedido", defaultExpression = "java(UUID.randomUUID().toString())")
-    @Mapping(target = "valorTotal", source = "pedido.valorTotal")
     PedidoEntity toEntity(Pedido pedido);
 
+    @Mapping(target = "mensagemPedido", expression = "java(\"Pedido realizado com sucesso\")")
     Pedido toPedido(PedidoEntity entity);
 
     List<Pedido> toListPedido(List<PedidoEntity> entity);

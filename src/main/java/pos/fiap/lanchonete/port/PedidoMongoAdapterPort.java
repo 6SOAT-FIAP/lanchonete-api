@@ -9,4 +9,6 @@ public interface PedidoMongoAdapterPort {
     Pedido cadastrarPedido(Pedido pedido);
 
     List<Pedido> buscarPedidos();
+
+    Pedido obterPedidoPorId(String id);
 }

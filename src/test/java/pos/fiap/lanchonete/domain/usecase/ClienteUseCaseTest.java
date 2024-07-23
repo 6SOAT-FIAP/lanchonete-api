@@ -19,8 +19,8 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.*;
-import static pos.fiap.lanchonete.objectmother.ClienteObjectMother.getClienteMock;
-import static pos.fiap.lanchonete.objectmother.DadosClienteObjectMother.getDadosClienteMock;
+import static pos.fiap.lanchonete.objectmother.model.ClienteObjectMother.getClienteMock;
+import static pos.fiap.lanchonete.objectmother.model.DadosClienteObjectMother.getDadosClienteMock;
 
 @ExtendWith(MockitoExtension.class)
 class ClienteUseCaseTest {
