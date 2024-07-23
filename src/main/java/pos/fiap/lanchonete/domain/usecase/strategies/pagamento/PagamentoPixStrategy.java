@@ -11,15 +11,15 @@ import static pos.fiap.lanchonete.domain.enums.StatusPagamentoEnum.AGUARDANDO;
 @Component
 @RequiredArgsConstructor
 public class PagamentoPixStrategy implements PagamentoStrategy {
-
     private final MercadoPagoPort mercadoPagoPort;
     private final PagamentoMongoAdapterPort pagamentoMongoAdapterPort;
 
     @Override
-    public DadosPagamento checkoutPagamento(DadosPagamento dadosPagamento) {
+    public DadosPagamento processarPagamento(DadosPagamento dadosPagamento) {
         final var qrCodeData = mercadoPagoPort.gerarPagamentoQRCode(dadosPagamento);
         dadosPagamento.completarPagamentoComQrCode(qrCodeData);
         dadosPagamento.setStatusPagamento(AGUARDANDO);
+
         return pagamentoMongoAdapterPort.salvarPagamento(dadosPagamento);
     }
 
