@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.ToString;
-import pos.fiap.lanchonete.adapter.in.api.enums.CategoriaEnum;
+import pos.fiap.lanchonete.domain.enums.CategoriaEnum;
 
 import java.io.Serial;
 import java.io.Serializable;

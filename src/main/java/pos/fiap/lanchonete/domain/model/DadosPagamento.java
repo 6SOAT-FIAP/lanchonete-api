@@ -2,9 +2,9 @@ package pos.fiap.lanchonete.domain.model;
 
 import lombok.Builder;
 import lombok.Data;
-import pos.fiap.lanchonete.adapter.in.api.enums.StatusPagamentoEnum;
+import pos.fiap.lanchonete.domain.enums.StatusPagamentoEnum;
 import pos.fiap.lanchonete.adapter.out.mercadopago.dto.pagamentoqrcode.PagamentoMPResponseDto;
-import pos.fiap.lanchonete.adapter.in.api.enums.MetodoPagamentoEnum;
+import pos.fiap.lanchonete.domain.enums.MetodoPagamentoEnum;
 
 import java.io.Serial;
 import java.io.Serializable;

@@ -2,7 +2,7 @@ package pos.fiap.lanchonete.domain.usecase.strategies.pagamento;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import pos.fiap.lanchonete.adapter.in.api.enums.MetodoPagamentoEnum;
+import pos.fiap.lanchonete.domain.enums.MetodoPagamentoEnum;
 import pos.fiap.lanchonete.domain.model.DadosPagamento;
 
 import java.util.HashMap;
@@ -10,7 +10,7 @@ import java.util.Map;
 
 import static java.lang.String.format;
 import static java.util.Objects.isNull;
-import static pos.fiap.lanchonete.adapter.in.api.enums.MetodoPagamentoEnum.*;
+import static pos.fiap.lanchonete.domain.enums.MetodoPagamentoEnum.*;
 
 @Service
 @RequiredArgsConstructor

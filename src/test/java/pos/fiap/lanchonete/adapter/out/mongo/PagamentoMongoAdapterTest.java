@@ -32,7 +32,7 @@ class PagamentoMongoAdapterTest {
         var pagamento = pagamentoMongoAdapter.obterDadosPagamento("123");
 
         verify(pagamentoRepository, times(1)).findByIdPedido(anyString());
-        verify(pagamentoEntityMapper, times(1)).toPagamento(any(PagamentoEntity.class));
+        verify(pagamentoEntityMapper, times(1)).toDadosPagamento(any(PagamentoEntity.class));
         assertNotNull(pagamento);
     }
 }

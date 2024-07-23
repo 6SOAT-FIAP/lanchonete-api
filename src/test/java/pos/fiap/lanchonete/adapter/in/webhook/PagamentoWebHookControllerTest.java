@@ -22,7 +22,7 @@ import static pos.fiap.lanchonete.utils.JsonStringUtils.asJsonString;
 
 @WebMvcTest(PagamentoWebHookController.class)
 class PagamentoWebHookControllerTest {
-    private static final String ENDPOINT_WEBHOOK_PAGAMENTO = "/api/v1/pagamento/webhook";
+    private static final String ENDPOINT_WEBHOOK_PAGAMENTO = "/";
 
     @Autowired
     private MockMvc mockMvc;

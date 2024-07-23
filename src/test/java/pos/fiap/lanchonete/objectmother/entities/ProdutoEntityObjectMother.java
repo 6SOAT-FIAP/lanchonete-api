@@ -1,7 +1,7 @@
 package pos.fiap.lanchonete.objectmother.entities;
 
 import lombok.SneakyThrows;
-import pos.fiap.lanchonete.adapter.in.api.enums.CategoriaEnum;
+import pos.fiap.lanchonete.domain.enums.CategoriaEnum;
 import pos.fiap.lanchonete.adapter.out.mongo.entities.ProdutoEntity;
 
 public class ProdutoEntityObjectMother {

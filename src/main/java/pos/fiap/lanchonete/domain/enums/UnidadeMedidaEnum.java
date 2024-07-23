@@ -1,4 +1,4 @@
-package pos.fiap.lanchonete.adapter.in.api.enums;
+package pos.fiap.lanchonete.domain.enums;
 
 public enum UnidadeMedidaEnum {
     UNIT,

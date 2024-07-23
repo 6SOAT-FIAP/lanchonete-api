@@ -63,7 +63,7 @@ class PagamentoControllerTest {
 
     @Test
     @SneakyThrows
-    void testBuscarStatusPagamento_Success() {
+    void testBuscarDadosPagamento_Success() {
         final var dadosPagamento = getDadosPagamentoMock();
         final var pagamentoResponseDto = getPagamentoAprovadoResponseDtoMock();
 

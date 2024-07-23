@@ -3,7 +3,7 @@ package pos.fiap.lanchonete.adapter.out.mongo;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
-import pos.fiap.lanchonete.adapter.in.api.enums.CategoriaEnum;
+import pos.fiap.lanchonete.domain.enums.CategoriaEnum;
 import pos.fiap.lanchonete.adapter.out.mongo.entities.mapper.ProdutoEntityMapper;
 import pos.fiap.lanchonete.adapter.out.mongo.repository.ProdutoRepository;
 import pos.fiap.lanchonete.domain.model.entity.Produto;

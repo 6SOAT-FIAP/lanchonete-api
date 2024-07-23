@@ -6,30 +6,16 @@ public class WebHookRequestDtoObjectMother {
 
     public static WebHookRequestDto getWebHookRequestDtoMock() {
         return WebHookRequestDto.builder()
-                .action("teste")
-                .apiVersion("1")
-                .data(buildWebhookDadosPedidoRequestDtoMock())
-                .id(1234L)
-                .dateCreated("2024-07-20")
-                .type("teste")
-                .userId("214")
+                .resource("teste/merchant_orders/1234")
+                .topic("214")
                 .build();
     }
 
     public static WebHookRequestDto getWebHookRequestDtoSemDadosMock() {
         return WebHookRequestDto.builder()
-                .action("teste")
-                .apiVersion("1")
-                .id(1234L)
-                .dateCreated("2024-07-20")
-                .type("teste")
-                .userId("214")
+                .resource("teste")
+                .topic("214")
                 .build();
     }
 
-    private static WebHookRequestDto.WebhookDadosPedidoRequestDto buildWebhookDadosPedidoRequestDtoMock() {
-        return WebHookRequestDto.WebhookDadosPedidoRequestDto.builder()
-                .id("123")
-                .build();
-    }
 }

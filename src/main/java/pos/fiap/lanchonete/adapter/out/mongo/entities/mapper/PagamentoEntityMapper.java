@@ -2,14 +2,12 @@ package pos.fiap.lanchonete.adapter.out.mongo.entities.mapper;
 
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
+import org.mapstruct.ReportingPolicy;
 import pos.fiap.lanchonete.adapter.out.mongo.entities.PagamentoEntity;
 import pos.fiap.lanchonete.domain.model.DadosPagamento;
-import pos.fiap.lanchonete.domain.model.entity.Pagamento;
 
-@Mapper(componentModel = "spring")
+@Mapper(componentModel = "spring", unmappedTargetPolicy = ReportingPolicy.IGNORE)
 public interface PagamentoEntityMapper {
-
-    Pagamento toPagamento(PagamentoEntity pagamentoEntity);
 
     @Mapping(target = "idPedido", source = "dadosPagamento.dadosPedido.numeroPedido")
     @Mapping(target = "qrCode", source = "dadosPagamento.qrCode")

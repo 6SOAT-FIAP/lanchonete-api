@@ -8,7 +8,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Spy;
 import org.mockito.junit.jupiter.MockitoExtension;
-import pos.fiap.lanchonete.adapter.in.api.enums.CategoriaEnum;
+import pos.fiap.lanchonete.domain.enums.CategoriaEnum;
 import pos.fiap.lanchonete.domain.model.DadosProduto;
 import pos.fiap.lanchonete.domain.model.entity.Produto;
 import pos.fiap.lanchonete.domain.model.entity.mapper.ProdutoMapper;
@@ -20,7 +20,7 @@ import java.util.Optional;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
-import static pos.fiap.lanchonete.adapter.in.api.enums.CategoriaEnum.ACOMPANHAMENTO;
+import static pos.fiap.lanchonete.domain.enums.CategoriaEnum.ACOMPANHAMENTO;
 import static pos.fiap.lanchonete.objectmother.model.DadosProdutoObjectMother.getDadosProdutoMock;
 import static pos.fiap.lanchonete.objectmother.model.ProdutoObjectMother.getProdutoMock;
 

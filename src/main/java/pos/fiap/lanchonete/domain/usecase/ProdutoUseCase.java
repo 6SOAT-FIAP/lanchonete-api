@@ -3,7 +3,7 @@ package pos.fiap.lanchonete.domain.usecase;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
-import pos.fiap.lanchonete.adapter.in.api.enums.CategoriaEnum;
+import pos.fiap.lanchonete.domain.enums.CategoriaEnum;
 import pos.fiap.lanchonete.domain.model.DadosProduto;
 import pos.fiap.lanchonete.domain.model.entity.Produto;
 import pos.fiap.lanchonete.domain.model.entity.mapper.ProdutoMapper;

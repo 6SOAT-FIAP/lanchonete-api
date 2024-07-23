@@ -70,9 +70,15 @@ public class PedidoController {
         log.info("Listando pedido");
 
         var pedidos = pedidoUseCasePort.listar();
+
+        if (pedidos.isEmpty()) {
+            log.info("Não foram encontrados pedidos");
+            return ResponseEntity.notFound().build();
+        }
+
         var pedidoResponse = dtoMapper.toListPedidoResponseDtoFromListDadosPedido(pedidos);
 
         log.info("Fim listagem do pedido");
-        return ResponseEntity.status(OK).body(pedidoResponse);
+        return ResponseEntity.ok().body(pedidoResponse);
     }
 }

@@ -3,14 +3,12 @@ package pos.fiap.lanchonete.adapter.out.mongo;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
-import pos.fiap.lanchonete.adapter.out.mongo.entities.PagamentoEntity;
 import pos.fiap.lanchonete.adapter.out.mongo.entities.mapper.PagamentoEntityMapper;
 import pos.fiap.lanchonete.adapter.out.mongo.repository.PagamentoRepository;
 import pos.fiap.lanchonete.domain.model.DadosPagamento;
 import pos.fiap.lanchonete.port.PagamentoMongoAdapterPort;
 
 import static java.util.Objects.nonNull;
-import static pos.fiap.lanchonete.adapter.in.api.enums.StatusPagamentoEnum.APROVADO;
 import static pos.fiap.lanchonete.utils.Constantes.FIM;
 import static pos.fiap.lanchonete.utils.Constantes.INICIO;
 
@@ -43,22 +41,14 @@ public class PagamentoMongoAdapter implements PagamentoMongoAdapterPort {
         var pagamentoEntity = pagamentoRepository.findByIdPedido(dadosPagamento.getDadosPedido().getNumeroPedido());
 
         if (nonNull(pagamentoEntity)) {
+            // TODO Refatorar update
             pagamentoRepository.deleteById(pagamentoEntity.getId());
-            pagamentoEntity = PagamentoEntity.buildAtt()
-                    .id(pagamentoEntity.getId())
-                    .idPedido(dadosPagamento.getDadosPedido().getNumeroPedido())
-                    .metodoPagamento(dadosPagamento.getMetodoPagamento())
-                    .statusPagamento(dadosPagamento.getStatusPagamento())
-                    .qrCode(dadosPagamento.getQrCode())
-                    .qrCodeId(dadosPagamento.getQrCodeId())
-                    .dataCriacao(pagamentoEntity.getDataCriacao())
-                    .statusPagamento(APROVADO)
-                    .build();
+            pagamentoEntity.atualizarDadosEntity(dadosPagamento);
         } else {
             pagamentoEntity = pagamentoEntityMapper.toEntity(dadosPagamento);
         }
 
-        pagamentoEntity = pagamentoRepository.insert(pagamentoEntity);
+        pagamentoEntity = pagamentoRepository.save(pagamentoEntity);
         var pagamento = pagamentoEntityMapper.toDadosPagamento(pagamentoEntity);
         log.info(String.format(STRING_LOG_FORMAT, SERVICE_NAME, SALVAR_PAGAMENTO_METHOD_NAME, FIM), pagamento);
         return pagamento;

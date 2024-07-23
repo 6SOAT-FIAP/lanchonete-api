@@ -2,7 +2,7 @@ package pos.fiap.lanchonete.objectmother.dtos.in.produto;
 
 import pos.fiap.lanchonete.adapter.in.api.produto.dto.ProdutoResponseDto;
 
-import static pos.fiap.lanchonete.adapter.in.api.enums.CategoriaEnum.ACOMPANHAMENTO;
+import static pos.fiap.lanchonete.domain.enums.CategoriaEnum.ACOMPANHAMENTO;
 
 public class ProdutoResponseDtoObjectMother {
 

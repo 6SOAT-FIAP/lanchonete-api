@@ -1,6 +1,6 @@
 package pos.fiap.lanchonete.port;
 
-import pos.fiap.lanchonete.adapter.in.api.enums.CategoriaEnum;
+import pos.fiap.lanchonete.domain.enums.CategoriaEnum;
 import pos.fiap.lanchonete.domain.model.entity.Produto;
 
 import java.util.List;

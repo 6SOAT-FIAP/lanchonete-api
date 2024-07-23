@@ -2,7 +2,7 @@ package pos.fiap.lanchonete.domain.model.entity;
 
 import lombok.Builder;
 import lombok.Data;
-import pos.fiap.lanchonete.adapter.in.api.enums.StatusPagamentoEnum;
+import pos.fiap.lanchonete.domain.enums.StatusPagamentoEnum;
 
 import java.io.Serial;
 import java.io.Serializable;

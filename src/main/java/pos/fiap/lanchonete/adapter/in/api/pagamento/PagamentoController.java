@@ -17,7 +17,8 @@ import pos.fiap.lanchonete.adapter.in.api.pagamento.mapper.PagamentoDtoMapper;
 import pos.fiap.lanchonete.adapter.out.exception.PedidoNotFoundException;
 import pos.fiap.lanchonete.port.PagamentoUseCasePort;
 
-import static org.springframework.http.HttpStatus.*;
+import static java.util.Objects.isNull;
+import static org.springframework.http.HttpStatus.OK;
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
 @Tag(name = "Pagamento", description = "APIs referente aos Pagamentos")
@@ -47,31 +48,36 @@ public class PagamentoController {
             var pagamentoResponse = pagamentoDtoMapper.toPagamentoResponseDtoFromDadosPagamento(pagamentoProcessado);
 
             log.info("Pagamento realizado {}", pagamentoResponse);
-            return ResponseEntity.status(OK).body(pagamentoResponse);
+            return ResponseEntity.ok().body(pagamentoResponse);
         } catch (Exception e) {
             if (e instanceof PedidoNotFoundException) {
-                return ResponseEntity.status(NOT_FOUND).build();
+                return ResponseEntity.notFound().build();
             }
 
-            return ResponseEntity.status(INTERNAL_SERVER_ERROR).build();
+            return ResponseEntity.internalServerError().build();
         }
     }
 
-    @Operation(summary = "Buscar status pagamento pedido",
-            description = "Buscar status do pagamento de um pedido especifico.")
+    @Operation(summary = "Buscar dados do pagamento do pedido",
+            description = "Buscar dados do pagamento de um pedido especifico.")
     @ApiResponses({
             @ApiResponse(responseCode = "200", content = {@Content(schema = @Schema(implementation = PagamentoResponseDto.class), mediaType = APPLICATION_JSON_VALUE)}),
             @ApiResponse(responseCode = "404", content = {@Content(schema = @Schema())}),
             @ApiResponse(responseCode = "500", content = {@Content(schema = @Schema())})})
     @ResponseStatus(OK)
     @GetMapping("/{idPedido}")
-    public ResponseEntity<PagamentoResponseDto> buscarStatusPagamento(@PathVariable String idPedido) {
-        log.info("Listando status do pedido " + idPedido);
+    public ResponseEntity<PagamentoResponseDto> buscarDadosPagamento(@PathVariable String idPedido) {
+        log.info("Obtendo dados do pagamento para o pedido {}", idPedido);
 
         var dadosPagamento = pagamentoUseCasePort.obterDadosPagamento(idPedido);
+
+        if (isNull(dadosPagamento)) {
+            log.info("Não foi encontrado pagamento para o pedido {}", idPedido);
+            return ResponseEntity.notFound().build();
+        }
         var pagamentoResponse = pagamentoDtoMapper.toPagamentoResponseDtoFromDadosPagamento(dadosPagamento);
 
-        log.info("Fim da listagem do status do pedido " + pagamentoResponse);
-        return ResponseEntity.status(OK).body(pagamentoResponse);
+        log.info("Fim da busca dos dados do pagamento {}", pagamentoResponse);
+        return ResponseEntity.ok().body(pagamentoResponse);
     }
 }

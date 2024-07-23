@@ -4,7 +4,7 @@ import org.mapstruct.Mapper;
 import org.mapstruct.Named;
 import pos.fiap.lanchonete.adapter.in.api.produto.dto.ProdutoRequestDto;
 import pos.fiap.lanchonete.adapter.in.api.produto.dto.ProdutoResponseDto;
-import pos.fiap.lanchonete.adapter.in.api.enums.CategoriaEnum;
+import pos.fiap.lanchonete.domain.enums.CategoriaEnum;
 import pos.fiap.lanchonete.domain.model.DadosProduto;
 
 import java.util.List;

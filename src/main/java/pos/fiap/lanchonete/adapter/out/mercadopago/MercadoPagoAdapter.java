@@ -9,6 +9,7 @@ import org.springframework.http.HttpMethod;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 import pos.fiap.lanchonete.adapter.out.exception.HttpRequestException;
+import pos.fiap.lanchonete.adapter.out.exception.RecursoNaoEncontradoException;
 import pos.fiap.lanchonete.adapter.out.mercadopago.dto.merchantorder.MerchantOrderResponseDto;
 import pos.fiap.lanchonete.adapter.out.mercadopago.dto.pagamentoqrcode.PagamentoMPResponseDto;
 import pos.fiap.lanchonete.domain.model.DadosPagamento;
@@ -48,9 +49,18 @@ public class MercadoPagoAdapter implements MercadoPagoPort {
 
             var response = restTemplate.exchange(urlQrCode, HttpMethod.POST, requestEntity, PagamentoMPResponseDto.class);
 
+            if (isNull(response.getBody())) {
+                throw new RecursoNaoEncontradoException("Erro ao tentar gerar o QR Code");
+            }
+
             log.info("Response generate QR Code mercado pago: {}", response.getBody());
             return response.getBody();
         } catch (Exception e) {
+
+            if (e instanceof RecursoNaoEncontradoException) {
+                throw e;
+            }
+
             log.error("Ocorreu algum erro na geração do QR code. ", e);
             throw new HttpRequestException("Ocorreu algum erro na geração do QR code. ", e);
         }
@@ -67,8 +77,7 @@ public class MercadoPagoAdapter implements MercadoPagoPort {
         log.info("Response numero pedido mercado livre: {}", response.getBody());
 
         if (isNull(response.getBody()) || isNull(response.getBody().getExternalReference())) {
-            // TODO subir excpetion
-
+            throw new RecursoNaoEncontradoException("Erro ao tentar obter o numero do pedido");
         }
 
         return response.getBody().getExternalReference();

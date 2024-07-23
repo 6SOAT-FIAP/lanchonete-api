@@ -23,4 +23,8 @@ public class DadosPedido implements Serializable {
     private String qrCode;
     private LocalDateTime dataCriacao;
     private LocalDateTime dataAtualizacao;
+
+    public void atualizarData() {
+        this.dataAtualizacao = LocalDateTime.now();
+    }
 }

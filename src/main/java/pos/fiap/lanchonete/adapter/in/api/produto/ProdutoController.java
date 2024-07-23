@@ -20,7 +20,7 @@ import java.util.List;
 
 import static org.springframework.http.HttpStatus.*;
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
-import static pos.fiap.lanchonete.adapter.in.api.enums.CategoriaEnum.getCategoriaByLabel;
+import static pos.fiap.lanchonete.domain.enums.CategoriaEnum.getCategoriaByLabel;
 
 @Tag(name = "Produto", description = "APIs referente ao Produto")
 @Slf4j

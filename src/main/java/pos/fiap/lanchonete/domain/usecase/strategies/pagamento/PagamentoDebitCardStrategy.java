@@ -5,7 +5,7 @@ import org.springframework.stereotype.Component;
 import pos.fiap.lanchonete.domain.model.DadosPagamento;
 import pos.fiap.lanchonete.port.PagamentoMongoAdapterPort;
 
-import static pos.fiap.lanchonete.adapter.in.api.enums.StatusPagamentoEnum.APROVADO;
+import static pos.fiap.lanchonete.domain.enums.StatusPagamentoEnum.APROVADO;
 
 @Component
 @RequiredArgsConstructor

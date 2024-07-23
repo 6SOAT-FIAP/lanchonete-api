@@ -2,8 +2,8 @@ package pos.fiap.lanchonete.objectmother.model;
 
 import pos.fiap.lanchonete.domain.model.DadosPagamento;
 
-import static pos.fiap.lanchonete.adapter.in.api.enums.StatusPagamentoEnum.APROVADO;
-import static pos.fiap.lanchonete.adapter.in.api.enums.MetodoPagamentoEnum.PIX;
+import static pos.fiap.lanchonete.domain.enums.StatusPagamentoEnum.APROVADO;
+import static pos.fiap.lanchonete.domain.enums.MetodoPagamentoEnum.PIX;
 import static pos.fiap.lanchonete.objectmother.dtos.out.PagamentoMPResponseDtoObjectMother.getPagamentoMPResponseDtoMock;
 import static pos.fiap.lanchonete.objectmother.model.DadosPedidoObjectMother.getDadosPedidoMock;
 

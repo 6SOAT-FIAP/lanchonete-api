@@ -7,16 +7,14 @@ import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
-import org.springframework.mock.web.MockHttpServletResponse;
 import org.springframework.test.web.servlet.MockMvc;
-import pos.fiap.lanchonete.adapter.in.api.enums.CategoriaEnum;
+import pos.fiap.lanchonete.domain.enums.CategoriaEnum;
 import pos.fiap.lanchonete.adapter.in.api.produto.ProdutoController;
 import pos.fiap.lanchonete.adapter.in.api.produto.dto.ProdutoRequestDto;
 import pos.fiap.lanchonete.adapter.in.api.produto.mapper.ProdutoDtoMapper;
 import pos.fiap.lanchonete.domain.model.DadosProduto;
 import pos.fiap.lanchonete.port.ProdutoUseCasePort;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 

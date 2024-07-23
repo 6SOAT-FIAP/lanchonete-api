@@ -9,8 +9,8 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
-import static pos.fiap.lanchonete.adapter.in.api.enums.CategoriaEnum.*;
-import static pos.fiap.lanchonete.adapter.in.api.enums.UnidadeMedidaEnum.UNIT;
+import static pos.fiap.lanchonete.domain.enums.CategoriaEnum.*;
+import static pos.fiap.lanchonete.domain.enums.UnidadeMedidaEnum.UNIT;
 
 public interface PagamentoMapper {
 

@@ -2,6 +2,7 @@ package pos.fiap.lanchonete.adapter.in.api.pedido.mapper;
 
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
+import org.mapstruct.ReportingPolicy;
 import pos.fiap.lanchonete.adapter.in.api.pedido.dto.PedidoRequestDto;
 import pos.fiap.lanchonete.adapter.in.api.pedido.dto.PedidoResponseDto;
 import pos.fiap.lanchonete.domain.model.DadosPedido;
@@ -9,7 +10,7 @@ import pos.fiap.lanchonete.utils.Constantes;
 
 import java.util.List;
 
-@Mapper(componentModel = "spring", imports = Constantes.class)
+@Mapper(componentModel = "spring", imports = Constantes.class, unmappedTargetPolicy = ReportingPolicy.IGNORE)
 public interface PedidoDtoMapper {
     @Mapping(target = "itens", source = "pedidoRequest.itens")
     @Mapping(target = "cpfCliente", source = "pedidoRequest.cpfCliente")
