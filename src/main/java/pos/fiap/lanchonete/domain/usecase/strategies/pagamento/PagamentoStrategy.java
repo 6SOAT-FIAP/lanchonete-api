@@ -4,7 +4,7 @@ import pos.fiap.lanchonete.domain.model.DadosPagamento;
 
 public interface PagamentoStrategy {
 
-    DadosPagamento checkoutPagamento(DadosPagamento dadosPagamento);
+    DadosPagamento processarPagamento(DadosPagamento dadosPagamento);
 
     void atualizarPagamento(DadosPagamento dadosPagamento);
 

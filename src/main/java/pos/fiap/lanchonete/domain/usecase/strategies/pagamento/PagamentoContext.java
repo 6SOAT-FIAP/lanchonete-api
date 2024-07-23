@@ -30,7 +30,7 @@ public class PagamentoContext {
         if (isNull(strategy)) {
             throw new IllegalArgumentException(format("O metodo de pagamento nao é suportado: %s", metodoPagamentoEnum));
         }
-        return strategy.checkoutPagamento(dadosPagamento);
+        return strategy.processarPagamento(dadosPagamento);
     }
 
     public void atualizarPagamento(DadosPagamento dadosPagamento) {

@@ -28,36 +28,36 @@ class PagamentoContextTest {
     @Test
     void processarPagamento_whenSendDadosPagamentoPIX_thenSucceed() {
         var dadosPagamento = getDadosPagamentoMock();
-        when(pagamentoPixStrategy.checkoutPagamento(any(DadosPagamento.class))).thenReturn(dadosPagamento);
+        when(pagamentoPixStrategy.processarPagamento(any(DadosPagamento.class))).thenReturn(dadosPagamento);
 
         var retorno = pagamentoContext.processarPagamento(dadosPagamento);
 
         assertNotNull(retorno);
-        verify(pagamentoPixStrategy, times(1)).checkoutPagamento(any(DadosPagamento.class));
+        verify(pagamentoPixStrategy, times(1)).processarPagamento(any(DadosPagamento.class));
     }
 
     @Test
     void processarPagamento_whenSendDadosPagamentoDebitCard_thenSucceed() {
         var dadosPagamento = getDadosPagamentoMock();
         dadosPagamento.setMetodoPagamento(DEBIT_CARD);
-        when(pagamentoDebitCardStrategy.checkoutPagamento(any(DadosPagamento.class))).thenReturn(dadosPagamento);
+        when(pagamentoDebitCardStrategy.processarPagamento(any(DadosPagamento.class))).thenReturn(dadosPagamento);
 
         var retorno = pagamentoContext.processarPagamento(dadosPagamento);
 
         assertNotNull(retorno);
-        verify(pagamentoDebitCardStrategy, times(1)).checkoutPagamento(any(DadosPagamento.class));
+        verify(pagamentoDebitCardStrategy, times(1)).processarPagamento(any(DadosPagamento.class));
     }
 
     @Test
     void processarPagamento_whenSendDadosPagamentoCreditCard_thenSucceed() {
         var dadosPagamento = getDadosPagamentoMock();
         dadosPagamento.setMetodoPagamento(CREDIT_CARD);
-        when(pagamentoCreditCardStrategy.checkoutPagamento(any(DadosPagamento.class))).thenReturn(dadosPagamento);
+        when(pagamentoCreditCardStrategy.processarPagamento(any(DadosPagamento.class))).thenReturn(dadosPagamento);
 
         var retorno = pagamentoContext.processarPagamento(dadosPagamento);
 
         assertNotNull(retorno);
-        verify(pagamentoCreditCardStrategy, times(1)).checkoutPagamento(any(DadosPagamento.class));
+        verify(pagamentoCreditCardStrategy, times(1)).processarPagamento(any(DadosPagamento.class));
     }
 
     @Test
