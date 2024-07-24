@@ -6,6 +6,7 @@ import org.springframework.stereotype.Component;
 import pos.fiap.lanchonete.adapter.out.exception.PedidoNotFoundException;
 import pos.fiap.lanchonete.adapter.out.mongo.entities.mapper.PedidoEntityMapper;
 import pos.fiap.lanchonete.adapter.out.mongo.repository.PedidoRepository;
+import pos.fiap.lanchonete.domain.enums.StatusPedidoEnum;
 import pos.fiap.lanchonete.domain.model.entity.Pedido;
 import pos.fiap.lanchonete.port.PedidoMongoAdapterPort;
 
@@ -45,6 +46,7 @@ public class PedidoMongoAdapter implements PedidoMongoAdapterPort {
         log.info(String.format(STRING_LOG_FORMAT, SERVICE_NAME, BUSCAR_PEDIDOS_METHOD_NAME, INICIO), "pedidos");
 
         var entity = pedidoRepository.findAll();
+        entity.removeIf(pedido -> pedido.getStatusPedido() == StatusPedidoEnum.FINALIZADO);
         var pedidoList = pedidoEntityMapper.toListPedido(entity);
 
         log.info(String.format(STRING_LOG_FORMAT, SERVICE_NAME, BUSCAR_PEDIDOS_METHOD_NAME, FIM), pedidoList);
