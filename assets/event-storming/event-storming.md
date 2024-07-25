@@ -7,7 +7,7 @@ Aplicou-se a técnica do event storming para modelar o processo do negócio.
 O primeiro passo foi o brainstorm, onde foram levantados os eventos do domínio abordado.
 
 <p align = "center">
-  <img src = event-storming/Brainstorming.svg>
+  <img src = Brainstorming.svg>
 </p>
 
 Em seguida, organizou-se os eventos na linha do tempo para os fluxos de realização do pedido e pagamento e preparação e entrega do pedido.
@@ -15,13 +15,13 @@ Em seguida, organizou-se os eventos na linha do tempo para os fluxos de realiza�
 ### Realização do pedido e pagamento:
 
 <p align = "center">
-  <img src = event-storming/Pedido-pagamento.svg>
+  <img src = Pedido-pagamento.svg>
 </p>
 
 ### Preparação e entrega do pedido:
 
 <p align = "center">
-  <img src = event-storming/Preparacao-entrega.svg>
+  <img src = Preparacao-entrega.svg>
 </p>
 
 ### Dicionário de linguagem ubíqua
