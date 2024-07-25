@@ -111,24 +111,4 @@ kubectl delete -f ./infra/k8s
 
 ## Event Storming
 
-Ilustrou-se o processo do negócio através do [**Event Storming**](assets/event-storming).
-
-O primeiro passo foi o brainstorm, onde foram levantados os eventos do domínio abordado.
-
-<p align = "center">
-  <img src = assets/event-storming/Brainstorming.svg>
-</p>
-
-Em seguida, organizou-se os eventos na linha do tempo para os seguintes fluxos:
-
-- Realização do pedido e pagamento:
-
-<p align = "center">
-  <img src = assets/event-storming/Pedido-pagamento.svg>
-</p>
-
-- Preparação e entrega do pedido:
-
-<p align = "center">
-  <img src = assets/event-storming/Preparacao-entrega.svg>
-</p>
+Ilustrou-se o processo do negócio através do [**Event Storming**](assets/event-storming/event-storming.md).
