@@ -14,6 +14,7 @@ import java.util.List;
 public interface PedidoDtoMapper {
     @Mapping(target = "itens", source = "pedidoRequest.itens")
     @Mapping(target = "cpfCliente", source = "pedidoRequest.cpfCliente")
+    @Mapping(target = "statusPedido", source = "pedidoRequest.statusPedido")
     DadosPedido toDadosPedidoFromRequestDto(PedidoRequestDto pedidoRequest);
 
     @Mapping(target = "numeroPedido", source = "pedido.numeroPedido")

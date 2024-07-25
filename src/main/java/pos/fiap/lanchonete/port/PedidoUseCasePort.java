@@ -11,4 +11,6 @@ public interface PedidoUseCasePort {
     List<DadosPedido> listar();
 
     DadosPedido obterPedidoPorId(String idPedido);
+
+    DadosPedido atualizar(String idPedido, DadosPedido dadosPedido);
 }

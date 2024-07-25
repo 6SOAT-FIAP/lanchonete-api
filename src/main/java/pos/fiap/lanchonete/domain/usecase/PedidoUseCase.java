@@ -11,6 +11,7 @@ import pos.fiap.lanchonete.domain.model.entity.mapper.PedidoMapper;
 import pos.fiap.lanchonete.port.PedidoMongoAdapterPort;
 import pos.fiap.lanchonete.port.PedidoUseCasePort;
 
+import java.time.LocalDateTime;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -49,6 +50,16 @@ public class PedidoUseCase implements PedidoUseCasePort {
     public DadosPedido obterPedidoPorId(String idPedido) {
         var pedido = pedidoMongoAdapterPort.obterPedidoPorId(idPedido);
         return pedidoMapper.toDadosPedido(pedido);
+    }
+
+    @Override
+    public DadosPedido atualizar(String idPedido, DadosPedido dadosPedido) {
+        var pedido = pedidoMongoAdapterPort.obterPedidoPorId(idPedido);
+        pedido.setStatusPedido(dadosPedido.getStatusPedido());
+        pedido.setDataAtualizacao(LocalDateTime.now());
+
+        var pedidoResponse = pedidoMongoAdapterPort.cadastrarPedido(pedido);
+        return pedidoMapper.toDadosPedido(pedidoResponse);
     }
 
     private Double calculaValorPedido(List<DadosProduto> itens) {
