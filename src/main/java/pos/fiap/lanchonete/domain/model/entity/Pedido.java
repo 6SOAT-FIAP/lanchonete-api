@@ -2,10 +2,10 @@ package pos.fiap.lanchonete.domain.model.entity;
 
 import lombok.Builder;
 import lombok.Data;
+import pos.fiap.lanchonete.domain.enums.StatusPedidoEnum;
 
 import java.io.Serial;
 import java.io.Serializable;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -22,4 +22,5 @@ public class Pedido implements Serializable {
     private List<Produto> itens;
     private LocalDateTime dataCriacao;
     private LocalDateTime dataAtualizacao;
+    private StatusPedidoEnum statusPedido;
 }

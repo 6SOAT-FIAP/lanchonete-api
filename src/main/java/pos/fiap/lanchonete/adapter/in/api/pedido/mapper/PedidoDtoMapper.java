@@ -18,7 +18,7 @@ public interface PedidoDtoMapper {
 
     @Mapping(target = "numeroPedido", source = "pedido.numeroPedido")
     @Mapping(target = "mensagemPedido", source = "pedido.mensagemPedido")
+    @Mapping(target = "descricaoPedido", source = "pedido.statusPedido.label")
     PedidoResponseDto toPedidoResponseDtoFromDadosPedido(DadosPedido pedido);
-
     List<PedidoResponseDto> toListPedidoResponseDtoFromListDadosPedido(List<DadosPedido> pedidos);
 }

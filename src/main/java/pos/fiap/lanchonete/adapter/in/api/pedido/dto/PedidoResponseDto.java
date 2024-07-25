@@ -9,6 +9,7 @@ import pos.fiap.lanchonete.domain.model.DadosProduto;
 
 import java.io.Serial;
 import java.io.Serializable;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Getter
@@ -26,4 +27,6 @@ public class PedidoResponseDto implements Serializable {
     private Double valorTotal;
     private String mensagemPedido;
     private String qrCode;
+    private String descricaoPedido;
+    private LocalDateTime dataCriacao;
 }

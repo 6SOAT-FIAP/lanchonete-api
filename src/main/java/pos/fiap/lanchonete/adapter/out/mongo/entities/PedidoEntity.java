@@ -4,6 +4,7 @@ import lombok.Builder;
 import lombok.Data;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
+import pos.fiap.lanchonete.domain.enums.StatusPedidoEnum;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -20,4 +21,5 @@ public class PedidoEntity {
     private List<ProdutoEntity> itens;
     private LocalDateTime dataCriacao;
     private LocalDateTime dataAtualizacao;
+    private StatusPedidoEnum statusPedido;
 }
