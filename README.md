@@ -27,6 +27,9 @@ Este sistema incluirá as seguintes funcionalidades:
 - Buscar produtos por categoria
 - Checkout dos pedidos
 - Listar os pedidos
+- Consulta do status do pagamento
+- Webhook para processamento do pagamento
+- Atualização do status do pedido
 
 ## 💻 Pré-requisitos
 
@@ -112,3 +115,22 @@ kubectl delete -f ./infra/k8s
 ## Event Storming
 
 Ilustrou-se o processo do negócio através do [**Event Storming**](assets/event-storming/event-storming.md).
+
+## Desenho da arquitetura
+
+Aplicou-se o padrão de arquitetura hexagonal conforme demonstrado na ilustração abaixo:
+
+<p align = "center">
+  <img src = assets/arquitetura/arquitetura-hexagonal.svg>
+</p>
+
+Abaixo mostra-se o desenho da arquitetura com os requisitos de infraestrutura:
+
+<p align = "center">
+  <img src = assets/arquitetura/desenho-arquitetura.svg>
+</p>
+
+## Collection
+
+Acesse a colection do Postman com todas as APIs desenvolvidas.
+
