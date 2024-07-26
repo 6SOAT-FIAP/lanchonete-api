@@ -14,11 +14,12 @@ import java.util.List;
 public interface PedidoDtoMapper {
     @Mapping(target = "itens", source = "pedidoRequest.itens")
     @Mapping(target = "cpfCliente", source = "pedidoRequest.cpfCliente")
+    @Mapping(target = "statusPedido", source = "pedidoRequest.statusPedido")
     DadosPedido toDadosPedidoFromRequestDto(PedidoRequestDto pedidoRequest);
 
     @Mapping(target = "numeroPedido", source = "pedido.numeroPedido")
     @Mapping(target = "mensagemPedido", source = "pedido.mensagemPedido")
+    @Mapping(target = "descricaoPedido", source = "pedido.statusPedido.label")
     PedidoResponseDto toPedidoResponseDtoFromDadosPedido(DadosPedido pedido);
-
     List<PedidoResponseDto> toListPedidoResponseDtoFromListDadosPedido(List<DadosPedido> pedidos);
 }

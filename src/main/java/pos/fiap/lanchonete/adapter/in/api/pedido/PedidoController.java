@@ -81,4 +81,27 @@ public class PedidoController {
         log.info("Fim listagem do pedido");
         return ResponseEntity.ok().body(pedidoResponse);
     }
+
+    @Operation(summary = "Atualizar pedido",
+            description = "Atualizar o pedido")
+    @ApiResponses({
+            @ApiResponse(responseCode = "200", content = {
+                    @Content(schema = @Schema(implementation = PedidoResponseDto.class),
+                            mediaType = APPLICATION_JSON_VALUE)
+            }),
+            @ApiResponse(responseCode = "404", content = {@Content(schema = @Schema())}),
+            @ApiResponse(responseCode = "500", content = {@Content(schema = @Schema())})})
+    @ResponseStatus(OK)
+    @PatchMapping("/{idPedido}")
+    public ResponseEntity<PedidoResponseDto> atualizar(@PathVariable String idPedido, @RequestBody PedidoRequestDto pedidoRequestDto) {
+        log.info("Atualizando pedido");
+
+        var dadosPedido = dtoMapper.toDadosPedidoFromRequestDto(pedidoRequestDto);
+
+        var pedido = pedidoUseCasePort.atualizar(idPedido, dadosPedido);
+        var pedidoResponse = dtoMapper.toPedidoResponseDtoFromDadosPedido(pedido);
+
+        log.info("Fim atualização do pedido");
+        return ResponseEntity.status(OK).body(pedidoResponse);
+    }
 }

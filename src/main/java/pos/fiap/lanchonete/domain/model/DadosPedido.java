@@ -2,6 +2,7 @@ package pos.fiap.lanchonete.domain.model;
 
 import lombok.Builder;
 import lombok.Data;
+import pos.fiap.lanchonete.domain.enums.StatusPedidoEnum;
 
 import java.io.Serial;
 import java.io.Serializable;
@@ -23,6 +24,7 @@ public class DadosPedido implements Serializable {
     private String qrCode;
     private LocalDateTime dataCriacao;
     private LocalDateTime dataAtualizacao;
+    private StatusPedidoEnum statusPedido;
 
     public void atualizarData() {
         this.dataAtualizacao = LocalDateTime.now();
