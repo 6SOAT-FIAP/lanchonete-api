@@ -132,5 +132,12 @@ Abaixo mostra-se o desenho da arquitetura com os requisitos de infraestrutura:
 
 ## Collection
 
-Acesse a colection do Postman com todas as APIs desenvolvidas.
+Acesse a [**collection**](assets/collection/Lanchonete.postman_collection) do Postman com todas as APIs desenvolvidas.
 
+## Guia instrutivo
+
+Acesse o [**guia**](assets/collection/guid.md) para para execução das APIs.
+
+## Vídeo demonstração
+
+Acesse o [**vídeo**](https://youtu.be/-6mkYD_8prE).
