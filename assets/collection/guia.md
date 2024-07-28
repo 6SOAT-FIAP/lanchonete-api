@@ -125,7 +125,7 @@ No fechamento da compra o cliente deve pagar o pedido:
 }
 ```
 
-#### 4.2 Pagar pedido
+#### 4.2 Consultar pagamento do pedido
 
 É possível consultar o pagamento do pedido com seu id:
 
