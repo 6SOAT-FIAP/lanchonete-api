@@ -136,7 +136,7 @@ Acesse a [**collection**](assets/collection/Lanchonete.postman_collection) do Po
 
 ## Guia instrutivo
 
-Acesse o [**guia**](assets/collection/guid.md) para para execução das APIs.
+Acesse o [**guia**](assets/collection/guid.md) para execução das APIs.
 
 ## Vídeo demonstração
 
