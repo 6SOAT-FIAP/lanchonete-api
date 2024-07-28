@@ -27,6 +27,9 @@ Este sistema incluirá as seguintes funcionalidades:
 - Buscar produtos por categoria
 - Checkout dos pedidos
 - Listar os pedidos
+- Consulta do status do pagamento
+- Webhook para processamento do pagamento
+- Atualização do status do pedido
 
 ## 💻 Pré-requisitos
 
@@ -111,24 +114,30 @@ kubectl delete -f ./infra/k8s
 
 ## Event Storming
 
-Ilustrou-se o processo do negócio através do [**Event Storming**](assets/event-storming).
+Ilustrou-se o processo do negócio através do [**Event Storming**](assets/event-storming/event-storming.md).
 
-O primeiro passo foi o brainstorm, onde foram levantados os eventos do domínio abordado.
+## Desenho da arquitetura
 
-<p align = "center">
-  <img src = assets/event-storming/Brainstorming.svg>
-</p>
-
-Em seguida, organizou-se os eventos na linha do tempo para os seguintes fluxos:
-
-- Realização do pedido e pagamento:
+Aplicou-se o padrão de arquitetura hexagonal conforme demonstrado na ilustração abaixo:
 
 <p align = "center">
-  <img src = assets/event-storming/Pedido-pagamento.svg>
+  <img src = assets/arquitetura/arquitetura-hexagonal.svg>
 </p>
 
-- Preparação e entrega do pedido:
+Abaixo mostra-se o desenho da arquitetura com os requisitos de infraestrutura:
 
 <p align = "center">
-  <img src = assets/event-storming/Preparacao-entrega.svg>
+  <img src = assets/arquitetura/desenho-arquitetura.svg>
 </p>
+
+## Collection
+
+Acesse a [**collection**](assets/collection/Lanchonete.postman_collection) do Postman com todas as APIs desenvolvidas.
+
+## Guia instrutivo
+
+Acesse o [**guia**](assets/collection/guia.md) para execução das APIs.
+
+## Vídeo demonstração
+
+Acesse o [**vídeo**](https://youtu.be/-6mkYD_8prE) demonstrativo do projeto.
