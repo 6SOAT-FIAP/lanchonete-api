@@ -3,7 +3,7 @@ name: open-pr-to-main
 on:
   push:
     branches:
-      - release/*
+      - feature/*
 
 jobs:
   open-pr-to-main:
@@ -30,7 +30,7 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
           committer: ${{ env.GIT_COMMIT_AUTHOR_NAME }} <${{ env.GIT_COMMIT_AUTHOR_EMAIL }}>
           author: ${{ env.GIT_COMMIT_AUTHOR_NAME }} <${{ env.GIT_COMMIT_AUTHOR_EMAIL }}>
-          title: 'PR aberto automaticamente de release para main'
+          title: 'PR aberto automaticamente de feature para main'
           body: 'Este PR foi criado automaticamente.'
           branch: pr-develop-to-main
           delete-branch: true
