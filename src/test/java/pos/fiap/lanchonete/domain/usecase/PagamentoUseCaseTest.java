@@ -7,7 +7,7 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import pos.fiap.lanchonete.domain.model.DadosPagamento;
 import pos.fiap.lanchonete.domain.usecase.strategies.pagamento.PagamentoContext;
-import pos.fiap.lanchonete.port.PagamentoMongoAdapterPort;
+import pos.fiap.lanchonete.port.PagamentoDbAdapterPort;
 import pos.fiap.lanchonete.port.PedidoUseCasePort;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
@@ -20,7 +20,7 @@ import static pos.fiap.lanchonete.objectmother.model.DadosPedidoObjectMother.get
 @ExtendWith(MockitoExtension.class)
 class PagamentoUseCaseTest {
     @Mock
-    private PagamentoMongoAdapterPort pagamentoMongoAdapterPort;
+    private PagamentoDbAdapterPort pagamentoDbAdapterPort;
     @Mock
     private PedidoUseCasePort pedidoUseCasePort;
     @Mock
@@ -30,12 +30,12 @@ class PagamentoUseCaseTest {
 
     @Test
     void obterDadosPagamento_whenSendIdPedido_thenSucceed() {
-        when(pagamentoMongoAdapterPort.obterDadosPagamento(anyString())).thenReturn(getDadosPagamentoMock());
+        when(pagamentoDbAdapterPort.obterDadosPagamento(anyString())).thenReturn(getDadosPagamentoMock());
 
         var dadosPagamento = pagamentoUseCase.obterDadosPagamento("2");
 
         assertNotNull(dadosPagamento);
-        verify(pagamentoMongoAdapterPort, times(1)).obterDadosPagamento(anyString());
+        verify(pagamentoDbAdapterPort, times(1)).obterDadosPagamento(anyString());
     }
 
     @Test

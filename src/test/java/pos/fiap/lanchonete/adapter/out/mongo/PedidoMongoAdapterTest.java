@@ -30,7 +30,7 @@ class PedidoMongoAdapterTest {
     @Spy
     private PedidoEntityMapper pedidoEntityMapper = Mappers.getMapper(PedidoEntityMapper.class);
     @InjectMocks
-    private PedidoMongoAdapter pedidoMongoAdapter;
+    private PedidoDbAdapter pedidoMongoAdapter;
 
     @Test
     void testCadastrarPedido_Success() {

@@ -18,7 +18,7 @@ class ProdutoMongoAdapterTest {
     @Spy
     private ClienteEntityMapper clienteEntityMapper = Mappers.getMapper(ClienteEntityMapper.class);
     @InjectMocks
-    private ProdutoMongoAdapter mongoAdapter;
+    private ProdutoDbAdapter mongoAdapter;
 
 
 }

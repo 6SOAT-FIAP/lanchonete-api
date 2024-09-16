@@ -4,7 +4,7 @@ import pos.fiap.lanchonete.domain.model.entity.Pedido;
 
 import java.util.List;
 
-public interface PedidoMongoAdapterPort {
+public interface PedidoDbAdapterPort {
 
     Pedido cadastrarPedido(Pedido pedido);
 

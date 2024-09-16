@@ -7,7 +7,7 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import pos.fiap.lanchonete.domain.model.DadosPagamento;
 import pos.fiap.lanchonete.port.MercadoPagoPort;
-import pos.fiap.lanchonete.port.PagamentoMongoAdapterPort;
+import pos.fiap.lanchonete.port.PagamentoDbAdapterPort;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.ArgumentMatchers.any;
@@ -20,7 +20,7 @@ class PagamentoCreditCardStrategyTest {
     @Mock
     private MercadoPagoPort mercadoPagoPort;
     @Mock
-    private PagamentoMongoAdapterPort pagamentoMongoAdapterPort;
+    private PagamentoDbAdapterPort pagamentoDbAdapterPort;
     @InjectMocks
     private PagamentoCreditCardStrategy pagamentoCreditCardStrategy;
 
@@ -29,22 +29,22 @@ class PagamentoCreditCardStrategyTest {
         var dadosPagamento = getDadosPagamentoMock();
         when(mercadoPagoPort.gerarPagamentoQRCode(any(DadosPagamento.class)))
                 .thenReturn(getPagamentoMPResponseDtoMock());
-        when(pagamentoMongoAdapterPort.salvarPagamento(any(DadosPagamento.class))).thenReturn(dadosPagamento);
+        when(pagamentoDbAdapterPort.salvarPagamento(any(DadosPagamento.class))).thenReturn(dadosPagamento);
 
         var retorno = pagamentoCreditCardStrategy.processarPagamento(dadosPagamento);
 
         assertNotNull(retorno);
         verify(mercadoPagoPort, times(1)).gerarPagamentoQRCode(any(DadosPagamento.class));
-        verify(pagamentoMongoAdapterPort, times(1)).salvarPagamento(any(DadosPagamento.class));
+        verify(pagamentoDbAdapterPort, times(1)).salvarPagamento(any(DadosPagamento.class));
     }
 
     @Test
     void atualizarPagamento_whenSendDadosPagamento_thenSucceed() {
         var dadosPagamento = getDadosPagamentoMock();
-        when(pagamentoMongoAdapterPort.salvarPagamento(any(DadosPagamento.class))).thenReturn(dadosPagamento);
+        when(pagamentoDbAdapterPort.salvarPagamento(any(DadosPagamento.class))).thenReturn(dadosPagamento);
 
         pagamentoCreditCardStrategy.atualizarPagamento(dadosPagamento);
 
-        verify(pagamentoMongoAdapterPort, times(1)).salvarPagamento(any(DadosPagamento.class));
+        verify(pagamentoDbAdapterPort, times(1)).salvarPagamento(any(DadosPagamento.class));
     }
 }

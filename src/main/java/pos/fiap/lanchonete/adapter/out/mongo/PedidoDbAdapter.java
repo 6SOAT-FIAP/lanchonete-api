@@ -8,7 +8,7 @@ import pos.fiap.lanchonete.adapter.out.mongo.entities.mapper.PedidoEntityMapper;
 import pos.fiap.lanchonete.adapter.out.mongo.repository.PedidoRepository;
 import pos.fiap.lanchonete.domain.enums.StatusPedidoEnum;
 import pos.fiap.lanchonete.domain.model.entity.Pedido;
-import pos.fiap.lanchonete.port.PedidoMongoAdapterPort;
+import pos.fiap.lanchonete.port.PedidoDbAdapterPort;
 
 import java.util.List;
 
@@ -18,8 +18,8 @@ import static pos.fiap.lanchonete.utils.Constantes.INICIO;
 @Slf4j
 @Component
 @RequiredArgsConstructor
-public class PedidoMongoAdapter implements PedidoMongoAdapterPort {
-    private static final String SERVICE_NAME = "PedidoMongoAdapter";
+public class PedidoDbAdapter implements PedidoDbAdapterPort {
+    private static final String SERVICE_NAME = "PedidoDbAdapter";
     private static final String CADASTRAR_PEDIDO_METHOD_NAME = "cadastrarPedido";
     private static final String BUSCAR_PEDIDOS_METHOD_NAME = "buscarPedidos";
     private static final String OBTER_PEDIDO_POR_ID_METHOD_NAME = "obterPedidoPorId";

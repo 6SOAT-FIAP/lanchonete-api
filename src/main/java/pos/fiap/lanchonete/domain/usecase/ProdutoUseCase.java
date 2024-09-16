@@ -7,7 +7,7 @@ import pos.fiap.lanchonete.domain.enums.CategoriaEnum;
 import pos.fiap.lanchonete.domain.model.DadosProduto;
 import pos.fiap.lanchonete.domain.model.entity.Produto;
 import pos.fiap.lanchonete.domain.model.entity.mapper.ProdutoMapper;
-import pos.fiap.lanchonete.port.ProdutoMongoAdapterPort;
+import pos.fiap.lanchonete.port.ProdutoDbAdapterPort;
 import pos.fiap.lanchonete.port.ProdutoUseCasePort;
 
 import java.util.List;
@@ -19,38 +19,38 @@ import java.util.Optional;
 public class ProdutoUseCase implements ProdutoUseCasePort {
 
     private final ProdutoMapper produtoMapper;
-    private final ProdutoMongoAdapterPort produtoMongoAdapterPort;
+    private final ProdutoDbAdapterPort produtoDbAdapterPort;
 
     @Override
     public DadosProduto cadastrar(DadosProduto dadosProduto) {
         var produto = produtoMapper.fromDadosProduto(dadosProduto);
-        produto = produtoMongoAdapterPort.cadastrarProduto(produto);
+        produto = produtoDbAdapterPort.cadastrarProduto(produto);
         return produtoMapper.toDadosProduto(produto);
     }
 
     @Override
     public DadosProduto alterar(String id, DadosProduto dadosProduto) {
         var produto = produtoMapper.fromDadosProduto(dadosProduto);
-        produto = produtoMongoAdapterPort.alterarProduto(id, produto);
+        produto = produtoDbAdapterPort.alterarProduto(id, produto);
         return produtoMapper.toDadosProduto(produto);
     }
 
     @Override
     public Optional<Produto> remover(String id) {
-        var produto = produtoMongoAdapterPort.buscarPorId(id);
+        var produto = produtoDbAdapterPort.buscarPorId(id);
 
         if (produto.isEmpty()) {
             return Optional.empty();
         }
 
-        produtoMongoAdapterPort.removerProduto(id);
+        produtoDbAdapterPort.removerProduto(id);
 
         return produto;
     }
 
     @Override
     public List<DadosProduto> buscarPorCategoria(CategoriaEnum categoria) {
-        var produtoList = produtoMongoAdapterPort.buscarProdutoPorCategoria(categoria);
+        var produtoList = produtoDbAdapterPort.buscarProdutoPorCategoria(categoria);
         return produtoMapper.toListDadosProduto(produtoList);
     }
 }

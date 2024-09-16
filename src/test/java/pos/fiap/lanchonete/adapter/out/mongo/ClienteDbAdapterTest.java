@@ -22,20 +22,20 @@ import static pos.fiap.lanchonete.objectmother.entities.ClienteEntityObjectMothe
 import static pos.fiap.lanchonete.objectmother.model.ClienteObjectMother.getClienteMock;
 
 @ExtendWith(MockitoExtension.class)
-class ClienteMongoAdapterTest {
+class ClienteDbAdapterTest {
 
     @Mock
     private ClienteRepository clienteRepository;
     @Spy
     private ClienteEntityMapper clienteEntityMapper = Mappers.getMapper(ClienteEntityMapper.class);
     @InjectMocks
-    private ClienteMongoAdapter clienteMongoAdapter;
+    private ClienteDbAdapter clienteDbAdapter;
 
     @Test
     void testCadastrarCliente_Success() {
         when(clienteRepository.save(any(ClienteEntity.class))).thenReturn(getClienteEntityMock());
 
-        var cliente = clienteMongoAdapter.cadastrarCliente(getClienteMock());
+        var cliente = clienteDbAdapter.cadastrarCliente(getClienteMock());
 
         verify(clienteRepository, times(1)).save(any(ClienteEntity.class));
         verify(clienteEntityMapper, times(1)).toEntity(any(Cliente.class));
@@ -47,7 +47,7 @@ class ClienteMongoAdapterTest {
     void testProcurarClientePorCpf_Success() {
         when(clienteRepository.findById(anyString())).thenReturn(Optional.of(getClienteEntityMock()));
 
-        var cliente = clienteMongoAdapter.procurarClientePorCpf(getClienteMock().getCpf());
+        var cliente = clienteDbAdapter.procurarClientePorCpf(getClienteMock().getCpf());
 
         verify(clienteRepository, times(1)).findById(anyString());
         verify(clienteEntityMapper, times(1)).toCliente(any(ClienteEntity.class));
@@ -60,7 +60,7 @@ class ClienteMongoAdapterTest {
     void testProcurarClientePorCpf_NotPresent() {
         when(clienteRepository.findById(anyString())).thenReturn(Optional.empty());
 
-        var cliente = clienteMongoAdapter.procurarClientePorCpf(getClienteMock().getCpf());
+        var cliente = clienteDbAdapter.procurarClientePorCpf(getClienteMock().getCpf());
 
         verify(clienteRepository, times(1)).findById(anyString());
         verify(clienteEntityMapper, times(0)).toCliente(any(ClienteEntity.class));

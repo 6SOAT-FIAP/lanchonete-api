@@ -11,6 +11,8 @@ import pos.fiap.lanchonete.adapter.out.mongo.entities.PagamentoEntity;
 import pos.fiap.lanchonete.adapter.out.mongo.entities.mapper.PagamentoEntityMapper;
 import pos.fiap.lanchonete.adapter.out.mongo.repository.PagamentoRepository;
 
+import java.util.Optional;
+
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
@@ -23,11 +25,11 @@ class PagamentoMongoAdapterTest {
     @Spy
     private PagamentoEntityMapper pagamentoEntityMapper = Mappers.getMapper(PagamentoEntityMapper.class);
     @InjectMocks
-    private PagamentoMongoAdapter pagamentoMongoAdapter;
+    private PagamentoDbAdapter pagamentoMongoAdapter;
 
     @Test
     void testObterDadosPagamento_Success() {
-        when(pagamentoRepository.findByIdPedido(anyString())).thenReturn(getPagamentoAprovadoEntityMock());
+        when(pagamentoRepository.findByIdPedido(anyString())).thenReturn(Optional.of(getPagamentoAprovadoEntityMock()));
 
         var pagamento = pagamentoMongoAdapter.obterDadosPagamento("123");
 

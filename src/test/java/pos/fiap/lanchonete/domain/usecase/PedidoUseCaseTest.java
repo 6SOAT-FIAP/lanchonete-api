@@ -11,7 +11,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import pos.fiap.lanchonete.domain.model.DadosPedido;
 import pos.fiap.lanchonete.domain.model.entity.Pedido;
 import pos.fiap.lanchonete.domain.model.entity.mapper.PedidoMapper;
-import pos.fiap.lanchonete.port.PedidoMongoAdapterPort;
+import pos.fiap.lanchonete.port.PedidoDbAdapterPort;
 
 import java.util.List;
 
@@ -26,7 +26,7 @@ import static pos.fiap.lanchonete.objectmother.model.PedidoObjectMother.getPedid
 class PedidoUseCaseTest {
 
     @Mock
-    private PedidoMongoAdapterPort pedidoMongoAdapterPort;
+    private PedidoDbAdapterPort pedidoDbAdapterPort;
     @Spy
     private PedidoMapper pedidoMapper = Mappers.getMapper(PedidoMapper.class);
     @InjectMocks
@@ -41,11 +41,11 @@ class PedidoUseCaseTest {
 
     @Test
     void givenPedido_whenSendDadosPedido_thenSucceed() {
-        when(pedidoMongoAdapterPort.cadastrarPedido(any(Pedido.class))).thenReturn(pedido);
+        when(pedidoDbAdapterPort.cadastrarPedido(any(Pedido.class))).thenReturn(pedido);
 
         var dadosPedido = pedidoUseCase.checkout(getDadosPedidoMock());
 
-        verify(pedidoMongoAdapterPort, times(1)).cadastrarPedido(any(Pedido.class));
+        verify(pedidoDbAdapterPort, times(1)).cadastrarPedido(any(Pedido.class));
         verify(pedidoMapper, times(1)).fromDadosPedido(anyDouble(), any(DadosPedido.class));
         verify(pedidoMapper, times(1)).toDadosPedido(any(Pedido.class));
         assertNotNull(dadosPedido);
@@ -54,11 +54,11 @@ class PedidoUseCaseTest {
 
     @Test
     void givenPedidos_whenGetAll_thenSucceed() {
-        when(pedidoMongoAdapterPort.buscarPedidos()).thenReturn(List.of(pedido));
+        when(pedidoDbAdapterPort.buscarPedidos()).thenReturn(List.of(pedido));
 
         var pedidos = pedidoUseCase.listar();
 
-        verify(pedidoMongoAdapterPort, times(1)).buscarPedidos();
+        verify(pedidoDbAdapterPort, times(1)).buscarPedidos();
         verify(pedidoMapper, times(1)).toListDadosPedido(anyList());
         assertNotNull(pedidos);
         assertFalse(pedidos.isEmpty());
