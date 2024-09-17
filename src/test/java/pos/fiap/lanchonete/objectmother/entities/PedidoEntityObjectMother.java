@@ -1,6 +1,7 @@
 package pos.fiap.lanchonete.objectmother.entities;
 
-import pos.fiap.lanchonete.adapter.out.mongo.entities.PedidoEntity;
+import pos.fiap.lanchonete.adapter.out.database.entities.PedidoEntity;
+import pos.fiap.lanchonete.domain.enums.StatusPedidoEnum;
 
 import java.util.List;
 
@@ -14,6 +15,7 @@ public class PedidoEntityObjectMother {
                 .cpfCliente("12345678")
                 .valorTotal(Double.valueOf("100.00"))
                 .itens(List.of(getProdutoEntityMock()))
+                .statusPedido(StatusPedidoEnum.RECEBIDO)
                 .build();
     }
 }

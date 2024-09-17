@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import pos.fiap.lanchonete.adapter.in.api.pedido.dto.PedidoRequestDto;
 import pos.fiap.lanchonete.adapter.in.api.pedido.dto.PedidoResponseDto;
 import pos.fiap.lanchonete.adapter.in.api.pedido.mapper.PedidoDtoMapper;
+import pos.fiap.lanchonete.domain.enums.StatusPedidoEnum;
 import pos.fiap.lanchonete.port.PedidoUseCasePort;
 
 import java.util.List;
@@ -46,6 +47,7 @@ public class PedidoController {
         log.info("Pedido request, itens: {}", pedidoRequestDto);
 
         var dadosPedido = dtoMapper.toDadosPedidoFromRequestDto(pedidoRequestDto);
+        dadosPedido.setStatusPedido(StatusPedidoEnum.RECEBIDO);
 
         var pedido = pedidoUseCasePort.checkout(dadosPedido);
 

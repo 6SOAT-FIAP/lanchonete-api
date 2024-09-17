@@ -6,7 +6,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import pos.fiap.lanchonete.domain.model.DadosPagamento;
 import pos.fiap.lanchonete.domain.usecase.strategies.pagamento.PagamentoContext;
-import pos.fiap.lanchonete.port.PagamentoMongoAdapterPort;
+import pos.fiap.lanchonete.port.PagamentoDbAdapterPort;
 import pos.fiap.lanchonete.port.PagamentoUseCasePort;
 import pos.fiap.lanchonete.port.PedidoUseCasePort;
 
@@ -14,13 +14,13 @@ import pos.fiap.lanchonete.port.PedidoUseCasePort;
 @Service
 @RequiredArgsConstructor
 public class PagamentoUseCase implements PagamentoUseCasePort {
-    private final PagamentoMongoAdapterPort pagamentoMongoAdapterPort;
+    private final PagamentoDbAdapterPort pagamentoDbAdapterPort;
     private final PedidoUseCasePort pedidoUseCasePort;
     private final PagamentoContext pagamentoContext;
 
     @Override
     public DadosPagamento obterDadosPagamento(String idPedido) {
-        return pagamentoMongoAdapterPort.obterDadosPagamento(idPedido);
+        return pagamentoDbAdapterPort.obterDadosPagamento(idPedido);
     }
 
     @Override

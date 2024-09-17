@@ -6,7 +6,7 @@ import pos.fiap.lanchonete.domain.model.entity.Produto;
 import java.util.List;
 import java.util.Optional;
 
-public interface ProdutoMongoAdapterPort {
+public interface ProdutoDbAdapterPort {
 
     Produto cadastrarProduto(Produto produto);
 

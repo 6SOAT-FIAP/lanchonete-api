@@ -1,7 +1,7 @@
-package pos.fiap.lanchonete.adapter.out.mongo.entities.mapper;
+package pos.fiap.lanchonete.adapter.out.database.entities.mapper;
 
 import org.mapstruct.Mapper;
-import pos.fiap.lanchonete.adapter.out.mongo.entities.ClienteEntity;
+import pos.fiap.lanchonete.adapter.out.database.entities.ClienteEntity;
 import pos.fiap.lanchonete.domain.model.entity.Cliente;
 
 @Mapper(componentModel = "spring")

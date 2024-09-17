@@ -1,4 +1,4 @@
-package pos.fiap.lanchonete.adapter.out.mongo;
+package pos.fiap.lanchonete.adapter.out.database;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -7,13 +7,14 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Spy;
 import org.mockito.junit.jupiter.MockitoExtension;
+import pos.fiap.lanchonete.adapter.out.database.entities.PedidoEntity;
+import pos.fiap.lanchonete.adapter.out.database.entities.mapper.PedidoEntityMapper;
+import pos.fiap.lanchonete.adapter.out.database.repository.PedidoRepository;
 import pos.fiap.lanchonete.adapter.out.exception.PedidoNotFoundException;
-import pos.fiap.lanchonete.adapter.out.mongo.entities.PedidoEntity;
-import pos.fiap.lanchonete.adapter.out.mongo.entities.mapper.PedidoEntityMapper;
-import pos.fiap.lanchonete.adapter.out.mongo.repository.PedidoRepository;
 import pos.fiap.lanchonete.domain.model.entity.Pedido;
 
-import java.util.List;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -23,20 +24,20 @@ import static pos.fiap.lanchonete.objectmother.entities.PedidoEntityObjectMother
 import static pos.fiap.lanchonete.objectmother.model.PedidoObjectMother.getPedidoMock;
 
 @ExtendWith(MockitoExtension.class)
-class PedidoMongoAdapterTest {
+class PedidoDbAdapterTest {
 
     @Mock
     private PedidoRepository pedidoRepository;
     @Spy
     private PedidoEntityMapper pedidoEntityMapper = Mappers.getMapper(PedidoEntityMapper.class);
     @InjectMocks
-    private PedidoMongoAdapter pedidoMongoAdapter;
+    private PedidoDbAdapter pedidoDbAdapter;
 
     @Test
     void testCadastrarPedido_Success() {
         when(pedidoRepository.save(any(PedidoEntity.class))).thenReturn(getPedidoEntityMock());
 
-        var pedido = pedidoMongoAdapter.cadastrarPedido(getPedidoMock());
+        var pedido = pedidoDbAdapter.cadastrarPedido(getPedidoMock());
 
         verify(pedidoRepository, times(1)).save(any(PedidoEntity.class));
         verify(pedidoEntityMapper, times(1)).toEntity(any(Pedido.class));
@@ -46,9 +47,9 @@ class PedidoMongoAdapterTest {
 
     @Test
     void testBuscarPedidos_Success() {
-        when(pedidoRepository.findAll()).thenReturn(List.of(getPedidoEntityMock()));
+        when(pedidoRepository.findAll()).thenReturn(new ArrayList<>(Collections.singleton(getPedidoEntityMock())));
 
-        var pedido = pedidoMongoAdapter.buscarPedidos();
+        var pedido = pedidoDbAdapter.buscarPedidos();
 
         verify(pedidoRepository, times(1)).findAll();
         verify(pedidoEntityMapper, times(1)).toListPedido(anyList());
@@ -60,7 +61,7 @@ class PedidoMongoAdapterTest {
     void testObterPedidoPorId_Success() {
         when(pedidoRepository.findById(anyString())).thenReturn(Optional.ofNullable(getPedidoEntityMock()));
 
-        var pedido = pedidoMongoAdapter.obterPedidoPorId("123");
+        var pedido = pedidoDbAdapter.obterPedidoPorId("123");
 
         verify(pedidoRepository, times(1)).findById(anyString());
         verify(pedidoEntityMapper, times(1)).toPedido(any(PedidoEntity.class));
@@ -72,7 +73,7 @@ class PedidoMongoAdapterTest {
         when(pedidoRepository.findById(anyString())).thenReturn(Optional.empty());
 
         assertThrows(PedidoNotFoundException.class, () -> {
-            pedidoMongoAdapter.obterPedidoPorId("123");
+            pedidoDbAdapter.obterPedidoPorId("123");
         });
     }
 }

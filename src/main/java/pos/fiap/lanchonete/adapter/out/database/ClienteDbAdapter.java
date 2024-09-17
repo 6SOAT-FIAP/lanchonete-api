@@ -1,12 +1,12 @@
-package pos.fiap.lanchonete.adapter.out.mongo;
+package pos.fiap.lanchonete.adapter.out.database;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
-import pos.fiap.lanchonete.adapter.out.mongo.entities.mapper.ClienteEntityMapper;
-import pos.fiap.lanchonete.adapter.out.mongo.repository.ClienteRepository;
+import pos.fiap.lanchonete.adapter.out.database.entities.mapper.ClienteEntityMapper;
+import pos.fiap.lanchonete.adapter.out.database.repository.ClienteRepository;
 import pos.fiap.lanchonete.domain.model.entity.Cliente;
-import pos.fiap.lanchonete.port.ClienteMongoAdapterPort;
+import pos.fiap.lanchonete.port.ClienteAdapterPort;
 
 import java.util.Optional;
 
@@ -16,8 +16,8 @@ import static pos.fiap.lanchonete.utils.Constantes.INICIO;
 @Slf4j
 @Component
 @RequiredArgsConstructor
-public class ClienteMongoAdapter implements ClienteMongoAdapterPort {
-    private static final String SERVICE_NAME = "ClienteMongoAdapter";
+public class ClienteDbAdapter implements ClienteAdapterPort {
+    private static final String SERVICE_NAME = "ClienteDbAdapter";
     private static final String CADASTRAR_CLIENTE_METHOD_NAME = "cadastrarCliente";
     private static final String PROCURAR_CLIENTE_POR_CPF_METHOD_NAME = "procurarClientePorCpf";
     private static final String STRING_LOG_FORMAT = "%s_%s_%s {}";

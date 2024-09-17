@@ -4,7 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import pos.fiap.lanchonete.domain.model.DadosPagamento;
 import pos.fiap.lanchonete.port.MercadoPagoPort;
-import pos.fiap.lanchonete.port.PagamentoMongoAdapterPort;
+import pos.fiap.lanchonete.port.PagamentoDbAdapterPort;
 
 import static pos.fiap.lanchonete.domain.enums.StatusPagamentoEnum.AGUARDANDO;
 
@@ -12,7 +12,7 @@ import static pos.fiap.lanchonete.domain.enums.StatusPagamentoEnum.AGUARDANDO;
 @RequiredArgsConstructor
 public class PagamentoCreditCardStrategy implements PagamentoStrategy {
     private final MercadoPagoPort mercadoPagoPort;
-    private final PagamentoMongoAdapterPort pagamentoMongoAdapterPort;
+    private final PagamentoDbAdapterPort pagamentoDbAdapterPort;
 
     @Override
     public DadosPagamento processarPagamento(DadosPagamento dadosPagamento) {
@@ -20,11 +20,11 @@ public class PagamentoCreditCardStrategy implements PagamentoStrategy {
         dadosPagamento.completarPagamentoComQrCode(qrCodeData);
         dadosPagamento.setStatusPagamento(AGUARDANDO);
 
-        return pagamentoMongoAdapterPort.salvarPagamento(dadosPagamento);
+        return pagamentoDbAdapterPort.salvarPagamento(dadosPagamento);
     }
 
     @Override
     public void atualizarPagamento(DadosPagamento dadosPagamento) {
-        pagamentoMongoAdapterPort.salvarPagamento(dadosPagamento);
+        pagamentoDbAdapterPort.salvarPagamento(dadosPagamento);
     }
 }

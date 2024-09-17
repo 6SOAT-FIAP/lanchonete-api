@@ -12,7 +12,7 @@ import pos.fiap.lanchonete.domain.enums.CategoriaEnum;
 import pos.fiap.lanchonete.domain.model.DadosProduto;
 import pos.fiap.lanchonete.domain.model.entity.Produto;
 import pos.fiap.lanchonete.domain.model.entity.mapper.ProdutoMapper;
-import pos.fiap.lanchonete.port.ProdutoMongoAdapterPort;
+import pos.fiap.lanchonete.port.ProdutoDbAdapterPort;
 
 import java.util.List;
 import java.util.Optional;
@@ -28,7 +28,7 @@ import static pos.fiap.lanchonete.objectmother.model.ProdutoObjectMother.getProd
 class ProdutoUseCaseTest {
 
     @Mock
-    private ProdutoMongoAdapterPort produtoMongoAdapterPort;
+    private ProdutoDbAdapterPort produtoDbAdapterPort;
     @Spy
     private ProdutoMapper produtoMapper = Mappers.getMapper(ProdutoMapper.class);
     @InjectMocks
@@ -43,11 +43,11 @@ class ProdutoUseCaseTest {
 
     @Test
     void givenProduto_whenSendDadosProduto_thenSucceed() {
-        when(produtoMongoAdapterPort.cadastrarProduto(any(Produto.class))).thenReturn(produto);
+        when(produtoDbAdapterPort.cadastrarProduto(any(Produto.class))).thenReturn(produto);
 
         var dadosProduto = produtoUseCase.cadastrar(getDadosProdutoMock());
 
-        verify(produtoMongoAdapterPort, times(1)).cadastrarProduto(any(Produto.class));
+        verify(produtoDbAdapterPort, times(1)).cadastrarProduto(any(Produto.class));
         verify(produtoMapper, times(1)).fromDadosProduto(any(DadosProduto.class));
         verify(produtoMapper, times(1)).toDadosProduto(any(Produto.class));
         assertNotNull(dadosProduto);
@@ -56,11 +56,11 @@ class ProdutoUseCaseTest {
 
     @Test
     void givenProduto_whenSendDadosProdutoToChange_thenSucceed() {
-        when(produtoMongoAdapterPort.alterarProduto(anyString(), any(Produto.class))).thenReturn(produto);
+        when(produtoDbAdapterPort.alterarProduto(anyString(), any(Produto.class))).thenReturn(produto);
 
         var dadosProduto = produtoUseCase.alterar("1", getDadosProdutoMock());
 
-        verify(produtoMongoAdapterPort, times(1)).alterarProduto(anyString(), any(Produto.class));
+        verify(produtoDbAdapterPort, times(1)).alterarProduto(anyString(), any(Produto.class));
         verify(produtoMapper, times(1)).fromDadosProduto(any(DadosProduto.class));
         verify(produtoMapper, times(1)).toDadosProduto(any(Produto.class));
         assertNotNull(dadosProduto);
@@ -69,11 +69,11 @@ class ProdutoUseCaseTest {
 
     @Test
     void givenProduto_whenSendFindByCategoria_thenSucceed() {
-        when(produtoMongoAdapterPort.buscarProdutoPorCategoria(any(CategoriaEnum.class))).thenReturn(List.of(produto));
+        when(produtoDbAdapterPort.buscarProdutoPorCategoria(any(CategoriaEnum.class))).thenReturn(List.of(produto));
 
         var dadosProduto = produtoUseCase.buscarPorCategoria(ACOMPANHAMENTO);
 
-        verify(produtoMongoAdapterPort, times(1))
+        verify(produtoDbAdapterPort, times(1))
                 .buscarProdutoPorCategoria(any(CategoriaEnum.class));
         verify(produtoMapper, times(1)).toListDadosProduto(anyList());
         assertNotNull(dadosProduto);
@@ -82,8 +82,8 @@ class ProdutoUseCaseTest {
 
     @Test
     void givenAnOptionalWithProduto_whenSendIdToDeleteProduto_thenSucceed() {
-        when(produtoMongoAdapterPort.buscarPorId(anyString())).thenReturn(Optional.of(getProdutoMock()));
-        doNothing().when(produtoMongoAdapterPort).removerProduto(anyString());
+        when(produtoDbAdapterPort.buscarPorId(anyString())).thenReturn(Optional.of(getProdutoMock()));
+        doNothing().when(produtoDbAdapterPort).removerProduto(anyString());
 
         var produto = produtoUseCase.remover("1");
 
@@ -93,7 +93,7 @@ class ProdutoUseCaseTest {
 
     @Test
     void givenAnEmptyOptional_whenSendIdToDeleteProduto_thenSucceed() {
-        when(produtoMongoAdapterPort.buscarPorId(anyString())).thenReturn(Optional.empty());
+        when(produtoDbAdapterPort.buscarPorId(anyString())).thenReturn(Optional.empty());
 
         var produto = produtoUseCase.remover("1");
 

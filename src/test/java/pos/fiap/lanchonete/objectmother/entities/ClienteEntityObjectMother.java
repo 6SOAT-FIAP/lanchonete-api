@@ -1,6 +1,6 @@
 package pos.fiap.lanchonete.objectmother.entities;
 
-import pos.fiap.lanchonete.adapter.out.mongo.entities.ClienteEntity;
+import pos.fiap.lanchonete.adapter.out.database.entities.ClienteEntity;
 
 public class ClienteEntityObjectMother {
 
