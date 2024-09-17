@@ -18,9 +18,10 @@ WORKDIR /app
 
 # Copie o JAR gerado a partir da etapa anterior para o contêiner
 COPY --from=builder /app/target/lanchonete-0.0.1-SNAPSHOT.jar .
+COPY --from=builder /app/target/*.properties .
 
 # Expondo a porta que o aplicativo está ouvindo
 EXPOSE 8080
 
 # Comando para iniciar o aplicativo
-CMD ["java", "-jar", "-Dspring.profiles.active=dev", "lanchonete-0.0.1-SNAPSHOT.jar"]
+CMD ["java", "-jar", "lanchonete-0.0.1-SNAPSHOT.jar"]

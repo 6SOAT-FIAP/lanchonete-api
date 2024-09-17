@@ -1,4 +1,4 @@
-package pos.fiap.lanchonete.adapter.out.mongo;
+package pos.fiap.lanchonete.adapter.out.database;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -7,9 +7,9 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Spy;
 import org.mockito.junit.jupiter.MockitoExtension;
-import pos.fiap.lanchonete.adapter.out.mongo.entities.ClienteEntity;
-import pos.fiap.lanchonete.adapter.out.mongo.entities.mapper.ClienteEntityMapper;
-import pos.fiap.lanchonete.adapter.out.mongo.repository.ClienteRepository;
+import pos.fiap.lanchonete.adapter.out.database.entities.ClienteEntity;
+import pos.fiap.lanchonete.adapter.out.database.entities.mapper.ClienteEntityMapper;
+import pos.fiap.lanchonete.adapter.out.database.repository.ClienteRepository;
 import pos.fiap.lanchonete.domain.model.entity.Cliente;
 
 import java.util.Optional;

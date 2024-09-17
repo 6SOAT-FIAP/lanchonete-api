@@ -1,8 +1,8 @@
-package pos.fiap.lanchonete.adapter.out.mongo.entities.mapper;
+package pos.fiap.lanchonete.adapter.out.database.entities.mapper;
 
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
-import pos.fiap.lanchonete.adapter.out.mongo.entities.ProdutoEntity;
+import pos.fiap.lanchonete.adapter.out.database.entities.ProdutoEntity;
 import pos.fiap.lanchonete.domain.model.entity.Produto;
 
 import java.util.List;

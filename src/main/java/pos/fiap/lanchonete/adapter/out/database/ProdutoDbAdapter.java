@@ -1,10 +1,10 @@
-package pos.fiap.lanchonete.adapter.out.mongo;
+package pos.fiap.lanchonete.adapter.out.database;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
-import pos.fiap.lanchonete.adapter.out.mongo.entities.mapper.ProdutoEntityMapper;
-import pos.fiap.lanchonete.adapter.out.mongo.repository.ProdutoRepository;
+import pos.fiap.lanchonete.adapter.out.database.entities.mapper.ProdutoEntityMapper;
+import pos.fiap.lanchonete.adapter.out.database.repository.ProdutoRepository;
 import pos.fiap.lanchonete.domain.enums.CategoriaEnum;
 import pos.fiap.lanchonete.domain.model.entity.Produto;
 import pos.fiap.lanchonete.port.ProdutoDbAdapterPort;
@@ -66,7 +66,7 @@ public class ProdutoDbAdapter implements ProdutoDbAdapterPort {
         var methodName = "buscarProdutoPorCategoria";
         log.info(String.format(STRING_LOG_FORMAT, SERVICE_NAME, methodName, INICIO), categoria);
 
-        var produtoEntityList = produtoRepository.findByCategoria(categoria.name());
+        var produtoEntityList = produtoRepository.findByCategoria(categoria);
 
         var produtoList = produtoEntityMapper.toListProduto(produtoEntityList);
 

@@ -1,10 +1,10 @@
-package pos.fiap.lanchonete.adapter.out.mongo;
+package pos.fiap.lanchonete.adapter.out.database;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
-import pos.fiap.lanchonete.adapter.out.mongo.entities.mapper.ClienteEntityMapper;
-import pos.fiap.lanchonete.adapter.out.mongo.repository.ClienteRepository;
+import pos.fiap.lanchonete.adapter.out.database.entities.mapper.ClienteEntityMapper;
+import pos.fiap.lanchonete.adapter.out.database.repository.ClienteRepository;
 import pos.fiap.lanchonete.domain.model.entity.Cliente;
 import pos.fiap.lanchonete.port.ClienteAdapterPort;
 
