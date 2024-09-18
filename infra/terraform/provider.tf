@@ -5,6 +5,12 @@ terraform {
       version = "~> 5.0"
     }
   }
+
+  backend "s3" {
+    bucket = "lanchonete-api"
+    key    = "lanchonete-api/application.tfstate"
+    region = "us-east-1"
+  }
 }
 
 provider "aws" {
