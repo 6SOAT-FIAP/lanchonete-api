@@ -3,7 +3,7 @@ variable "projectName" {
 }
 
 variable "tags" {
-  type = map(string)
+  type    = map(string)
   default = {
     App      = "lanchonete-api",
     Ambiente = "Desenvolvimento"
@@ -32,4 +32,10 @@ variable "accountId" {
   description = "Aws Account Id"
   type        = string
   sensitive   = true
+}
+
+variable "dockerFileDir" {
+  description = "Diretório do dockerfile"
+  type        = string
+  default     = "."
 }

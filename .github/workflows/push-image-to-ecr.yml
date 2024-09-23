@@ -13,6 +13,7 @@ env:
   TF_VAR_secretKey: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
   TF_VAR_defaultRegion: 'us-east-1'
   TF_VAR_accountId: '638385053556'
+  TF_VAR_dockerFileDir: '.'
 
 jobs:
   plan-prod:
@@ -49,7 +50,7 @@ jobs:
 
       - name: Terraform Plan
         id: plan
-        run: TF_LOG=DEBUG terraform plan -replace="null_resource.push_image_to_ecr" -out terraform.plan
+        run: TF_LOG=DEBUG terraform plan -out terraform.plan
         continue-on-error: true
 
       - name: Terraform Apply
