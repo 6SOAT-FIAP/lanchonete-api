@@ -21,7 +21,6 @@ jobs:
 
     env:
       TF_WORKING_DIR: './infra/terraform'
-      TF_VAR_dockerFileDir: './'
 
     defaults:
       run:
