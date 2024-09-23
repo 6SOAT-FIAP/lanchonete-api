@@ -33,9 +33,3 @@ variable "accountId" {
   type        = string
   sensitive   = true
 }
-
-variable "dockerFileDir" {
-  description = "Diretório do dockerfile"
-  type        = string
-  default     = "."
-}
