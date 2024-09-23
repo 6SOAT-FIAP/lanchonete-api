@@ -1,4 +1,4 @@
-name: open-pr-to-main
+name: Open pull request to main repository
 
 on:
   push:
@@ -10,22 +10,11 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Verificar alterações
-        uses: actions/checkout@v2
-        with:
-          ref: main
+      - name: Checkout the feature branch
+        uses: actions/checkout@v4
 
-      - name: Extrair dados do commit
-        uses: rlespinasse/git-commit-data-action@v1.x
-
-      - name: Abrir Pull Request
-        id: pr
-        uses: peter-evans/create-pull-request@v5
+      - name: Create Pull Request
+        uses: repo-sync/pull-request@v2
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          committer: ${{ env.GIT_COMMIT_AUTHOR_NAME }} <${{ env.GIT_COMMIT_AUTHOR_EMAIL }}>
-          author: ${{ env.GIT_COMMIT_AUTHOR_NAME }} <${{ env.GIT_COMMIT_AUTHOR_EMAIL }}>
-          title: 'PR aberto automaticamente de feature para main'
-          body: 'Este PR foi criado automaticamente.'
-          branch: pr-feature-to-main
-          delete-branch: true
+          destination_branch: main
+          pr_title: ${{ github.ref_name }} -> main
