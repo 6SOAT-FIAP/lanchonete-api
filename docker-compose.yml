@@ -41,7 +41,7 @@ services:
         condition: service_healthy
     environment:
       - SPRING_PROFILES_ACTIVE=dev
-      - SPRING_DATASOURCE_URL=jdbc:mysql://rds-lanchonete-api.c3zrc6uyh6jk.us-east-1.rds.amazonaws.com:3306/lanchonete_db?createDatabaseIfNotExist=true&serverTimezone=America/Sao_Paulo&useSSl=false
+      - SPRING_DATASOURCE_URL=jdbc:mysql://rds-lanchonete-api.ce4gi78vrznv.sa-east-1.rds.amazonaws.com:3306/lanchonete_db?createDatabaseIfNotExist=true&serverTimezone=America/Sao_Paulo&useSSl=false
       - SPRING_DATASOURCE_USERNAME=root
       - SPRING_DATASOURCE_PASSWORD=123456
     volumes:
