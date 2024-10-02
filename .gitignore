@@ -33,6 +33,9 @@ build/
 .vscode/
 
 ### Terraform ###
+.terraform.lock.hcl
+terraform.plan
+.terraform/
 # Local .terraform directories
 **/.terraform
 .terraform.lock.hcl

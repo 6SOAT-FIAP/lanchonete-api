@@ -9,12 +9,12 @@ terraform {
   backend "s3" {
     bucket = "lanchonete-bucket"
     key    = "lanchonete-bucket/application.tfstate"
-    region = "us-east-1"
+    region = "sa-east-1"
   }
 }
 
 provider "aws" {
-  region = "us-east-1"
+  region = "sa-east-1"
 
   default_tags {
     tags = var.tags
