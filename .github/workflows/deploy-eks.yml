@@ -86,12 +86,6 @@ jobs:
           DB_HOST=${{ secrets.DB_HOST }}
           echo "DB_HOST=$DB_HOST" >> $GITHUB_ENV
 
-      - name: Overwrite .env variable
-        run: |
-          echo "ENABLE_FLYWAY=true" >> .env
-          echo "DB_HOST=${{ env.DB_HOST }}" >> .env
-        working-directory: lanchonete-cloud-infra
-
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v1
 
