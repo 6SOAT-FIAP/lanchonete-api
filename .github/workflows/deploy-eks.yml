@@ -25,7 +25,7 @@ jobs:
     runs-on: ubuntu-latest
 
     env:
-      BUILD_VERSION: latest
+      BUILD_VERSION: ${{ github.event.inputs.app_image_version || github.sha }}
 
     steps:
       - name: Checkout code
@@ -74,29 +74,40 @@ jobs:
       - name: Clone Terraform Config Repository
         run: git clone https://github.com/6SOAT-FIAP/lanchonete-infra.git
 
-#      - name: Load environment variables
-#        uses: thaind0/envfile@v1
-#        with:
-#          secrets: ${{ toJSON(secrets) }}
-#          override: false # prevent overriding IMAGE_VERSION -> don't create the env variables
-#          file: lanchonete-cloud-infra/.env
+      - name: Load environment variables
+        uses: thaind0/envfile@v1
+        with:
+          secrets: ${{ toJSON(secrets) }}
+          override: false # prevent overriding IMAGE_VERSION -> don't create the env variables
+          file: lanchonete-infra/.env
 
       - name: Get RDS endpoint
         run: |
-          DB_HOST=${{ secrets.DB_HOST }}
+          DB_HOST=$(aws rds describe-db-instances --db-instance-identifier ${{ secrets.DB_IDENTIFIER }} --query "DBInstances[0].Endpoint.Address" --output text)
           echo "DB_HOST=$DB_HOST" >> $GITHUB_ENV
+
+      - name: Overwrite .env variable
+        run: |
+          echo "IMAGE_VERSION=${{ env.IMAGE_VERSION }}" >> .env
+          echo "ENABLE_FLYWAY=true" >> .env
+          echo "DB_HOST=${{ env.DB_HOST }}" >> .env
+        working-directory: lanchonete-infra
 
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v1
 
       - name: Terraform Init
-        run: terraform init -reconfigure -backend-config="bucket=${{ secrets.AWS_BUCKET_NAME }}" -backend-config="key=terraform.tfstate" -backend-config="region=${{ secrets.AWS_REGION }}"
+        run: terraform init  -reconfigure -backend-config="bucket=${{ secrets.AWS_BUCKET_NAME }}" -backend-config="key=terraform.tfstate" -backend-config="region=${{ secrets.AWS_REGION }}"
+        working-directory: lanchonete-infra
 
       - name: Terraform Validate
         run: terraform validate
+        working-directory: lanchonete-infra
 
       - name: Terraform Plan
         run: bash terraform.sh plan
+        working-directory: lanchonete-infra
 
       - name: Terraform Apply
         run: bash terraform.sh apply -auto-approve
+        working-directory: lanchonete-infra
