@@ -91,16 +91,12 @@ jobs:
 
       - name: Terraform Init
         run: terraform init -reconfigure -backend-config="bucket=${{ secrets.AWS_BUCKET_NAME }}" -backend-config="key=terraform.tfstate" -backend-config="region=${{ secrets.AWS_REGION }}"
-        working-directory: lanchonete-cloud-infra
 
       - name: Terraform Validate
         run: terraform validate
-        working-directory: lanchonete-cloud-infra
 
       - name: Terraform Plan
         run: bash terraform.sh plan
-        working-directory: lanchonete-cloud-infra
 
       - name: Terraform Apply
         run: bash terraform.sh apply -auto-approve
-        working-directory: lanchonete-cloud-infra
