@@ -25,7 +25,7 @@ jobs:
     runs-on: ubuntu-latest
 
     env:
-      BUILD_VERSION: ${{ github.event.inputs.app_image_version || github.sha }}
+      BUILD_VERSION: latest
 
     steps:
       - name: Checkout code
@@ -88,7 +88,6 @@ jobs:
 
       - name: Overwrite .env variable
         run: |
-          echo "IMAGE_VERSION=latest" >> .env
           echo "ENABLE_FLYWAY=true" >> .env
           echo "DB_HOST=${{ env.DB_HOST }}" >> .env
         working-directory: lanchonete-cloud-infra
