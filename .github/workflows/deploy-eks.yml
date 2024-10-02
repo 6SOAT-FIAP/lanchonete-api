@@ -74,12 +74,12 @@ jobs:
       - name: Clone Terraform Config Repository
         run: git clone https://github.com/6SOAT-FIAP/lanchonete-infra.git
 
-      - name: Load environment variables
-        uses: thaind0/envfile@v1
-        with:
-          secrets: ${{ toJSON(secrets) }}
-          override: false # prevent overriding IMAGE_VERSION -> don't create the env variables
-          file: lanchonete-cloud-infra/.env
+#      - name: Load environment variables
+#        uses: thaind0/envfile@v1
+#        with:
+#          secrets: ${{ toJSON(secrets) }}
+#          override: false # prevent overriding IMAGE_VERSION -> don't create the env variables
+#          file: lanchonete-cloud-infra/.env
 
       - name: Get RDS endpoint
         run: |
@@ -88,7 +88,7 @@ jobs:
 
       - name: Overwrite .env variable
         run: |
-          echo "IMAGE_VERSION=${{ env.IMAGE_VERSION }}" >> .env
+          echo "IMAGE_VERSION=latest" >> .env
           echo "ENABLE_FLYWAY=true" >> .env
           echo "DB_HOST=${{ env.DB_HOST }}" >> .env
         working-directory: lanchonete-cloud-infra
