@@ -1,11 +1,11 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: lanchonete
+  name: lanchonete-deployment
   labels:
     app: lanchonete
 spec:
-  replicas: 3
+  replicas: 2
   selector:
     matchLabels:
       app: lanchonete
@@ -14,24 +14,40 @@ spec:
       labels:
         app: lanchonete
     spec:
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+              - matchExpressions:
+                  - key: kubernetes.io/arch
+                    operator: In
+                    values:
+                      - amd64
+                      - arm64
       containers:
         - name: lanchonete-api
-          image: luhanlacerda/lanchonete-api
-          ports:
-            - containerPort: 8080
-          env:
-            - name: spring.profiles.active
-              valueFrom:
-                configMapKeyRef:
-                  name: dados
-                  key: ENVIRONMENT
-          livenessProbe:
-            httpGet:
-              path: /swagger-ui/
-              port: 8080
-            initialDelaySeconds: 180
-            periodSeconds: 5
+          image: luhanlacerda/lanchonete-api:latest
+          #          env:
+          #            - name: spring.profiles.active
+          #              valueFrom:
+          #                configMapKeyRef:
+          #                  name: dados
+          #                  key: ENVIRONMENT
+          #          livenessProbe:
+          #            httpGet:
+          #              path: /swagger-ui/
+          #              port: 8080
+          #            initialDelaySeconds: 180
+          #            periodSeconds: 5
           resources:
             requests:
               memory: "1000m"    # Initial memory request
               cpu: "1000m"       # Initial CPU request
+            limits:
+              memory: "3000m"    # Initial memory limits
+              cpu: "3000m"       # Initial CPU limits
+          ports:
+            - name: http
+              containerPort: 8080
+          nodeSelector:
+            kubernetes.io/os: linux
