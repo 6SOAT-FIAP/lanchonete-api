@@ -83,7 +83,7 @@ jobs:
 
       - name: Get RDS endpoint
         run: |
-          DB_HOST=$(aws rds describe-db-instances --db-instance-identifier ${{ secrets.DB_IDENTIFIER }} --query "DBInstances[0].Endpoint.Address" --output text)
+          DB_HOST=$(aws rds describe-db-instances --db-instance-identifier lanchonete-db --query "DBInstances[0].Endpoint.Address" --output text)
           echo "DB_HOST=$DB_HOST" >> $GITHUB_ENV
 
       - name: Overwrite .env variable
